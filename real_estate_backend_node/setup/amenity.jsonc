@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Example Amenity 2",
+    "alias": "amenity-2",
+    "relatedPurpose": ["sale"],
+    "relatedCategory": ["651e54b8afb879c07bc6517a"],
+    "relatedSubCategory": ["651e64633a83a6031d89c3df"],
+    "fieldType": "radio",
+    "options": [
+      {
+        "id": "option1",
+        "name": "Option 1",
+        "label": "Option One",
+        "value": "1"
+      },
+      {
+        "id": "option2",
+        "name": "Option 2",
+        "label": "Option Two",
+        "value": "2"
+      }
+    ],
+    "description": "Description for Amenity 2"
+  }
+]

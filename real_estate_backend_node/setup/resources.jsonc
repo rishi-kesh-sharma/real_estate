@@ -1,0 +1,841 @@
+[
+  // API
+
+  // Users API
+
+  // default
+  {
+    "name": "/api/users",
+    "alias": "Users API",
+    "type": "api"
+  },
+
+  // detail
+  {
+    "name": "/api/users/detail",
+    "alias": "Users detail API",
+    "type": "api"
+  },
+  // create
+  {
+    "name": "/api/users/create",
+    "alias": "Users create API",
+    "type": "api"
+  },
+  // update
+  {
+    "name": "/api/users/update",
+    "alias": "Users update API",
+    "type": "api"
+  },
+  // search
+  {
+    "name": "/api/users/search",
+    "alias": "Users search API",
+    "type": "api"
+  },
+  // count
+  {
+    "name": "/api/users/count",
+    "alias": "Users count API",
+    "type": "api"
+  },
+  // delete
+  {
+    "name": "/api/users/delete",
+    "alias": "Users delete API",
+    "type": "api"
+  },
+  // check
+  {
+    "name": "/api/users/check",
+    "alias": "Users check API",
+    "type": "api"
+  },
+
+  // Roles API
+
+  // default
+  {
+    "name": "/api/roles",
+    "alias": "Roles API",
+    "type": "api"
+  },
+
+  // detail
+  {
+    "name": "/api/roles/detail",
+    "alias": "Roles detail API",
+    "type": "api"
+  },
+
+  // create
+  {
+    "name": "/api/roles/create",
+    "alias": "Roles create API",
+    "type": "api"
+  },
+
+  // update
+  {
+    "name": "/api/roles/update",
+    "alias": "Roles update API",
+    "type": "api"
+  },
+
+  // search
+  {
+    "name": "/api/roles/search",
+    "alias": "Roles search API",
+    "type": "api"
+  },
+
+  // count
+  {
+    "name": "/api/roles/count",
+    "alias": "Roles count API",
+    "type": "api"
+  },
+
+  // delete
+  {
+    "name": "/api/roles/delete",
+    "alias": "Roles delete API",
+    "type": "api"
+  },
+
+  // Resources API
+
+  // default
+  {
+    "name": "/api/resources",
+    "alias": "Resources API",
+    "type": "api"
+  },
+
+  // detail
+  {
+    "name": "/api/resources/detail",
+    "alias": "Resources detail API",
+    "type": "api"
+  },
+
+  // create
+  {
+    "name": "/api/resources/create",
+    "alias": "Resources create API",
+    "type": "api"
+  },
+
+  // update
+  {
+    "name": "/api/resources/update",
+    "alias": "Resources update API",
+    "type": "api"
+  },
+
+  // search
+  {
+    "name": "/api/resources/search",
+    "alias": "Resources search API",
+    "type": "api"
+  },
+
+  // count
+  {
+    "name": "/api/resources/count",
+    "alias": "Resources count API",
+    "type": "api"
+  },
+
+  // delete
+  {
+    "name": "/api/resources/delete",
+    "alias": "Resources delete API",
+    "type": "api"
+  },
+
+  // Permissions API
+
+  // default
+  {
+    "name": "/api/permissions",
+    "alias": "Permissions API",
+    "type": "api"
+  },
+
+  // detail
+  {
+    "name": "/api/permissions/detail",
+    "alias": "Permissions detail API",
+    "type": "api"
+  },
+
+  // create
+  {
+    "name": "/api/permissions/create",
+    "alias": "Permissions create API",
+    "type": "api"
+  },
+
+  // update
+  {
+    "name": "/api/permissions/update",
+    "alias": "Permissions update API",
+    "type": "api"
+  },
+
+  // upsert
+  {
+    "name": "/api/permissions/upsert",
+    "alias": "Permissions upsert API",
+    "type": "api"
+  },
+
+  // search
+  {
+    "name": "/api/permissions/search",
+    "alias": "Permissions search API",
+    "type": "api"
+  },
+
+  // count
+  {
+    "name": "/api/permissions/count",
+    "alias": "Permissions count API",
+    "type": "api"
+  },
+
+  // delete
+  {
+    "name": "/api/permissions/delete",
+    "alias": "Permissions delete API",
+    "type": "api"
+  },
+
+  // Products API
+
+  // default
+  {
+    "name": "/api/products",
+    "alias": "Products API",
+    "type": "api"
+  },
+
+  // detail
+  {
+    "name": "/api/products/detail",
+    "alias": "Products detail API",
+    "type": "api"
+  },
+
+  // create
+  {
+    "name": "/api/products/create",
+    "alias": "Products create API",
+    "type": "api"
+  },
+
+  // update
+  {
+    "name": "/api/products/update",
+    "alias": "Products update API",
+    "type": "api"
+  },
+
+  // search
+  {
+    "name": "/api/products/search",
+    "alias": "Products search API",
+    "type": "api"
+  },
+
+  // count
+  {
+    "name": "/api/products/count",
+    "alias": "Products count API",
+    "type": "api"
+  },
+
+  // delete
+  {
+    "name": "/api/products/delete",
+    "alias": "Products delete API",
+    "type": "api"
+  },
+
+  // Properties API
+
+  // default
+  {
+    "name": "/api/properties",
+    "alias": "Properties API",
+    "type": "api"
+  },
+
+  // detail
+  {
+    "name": "/api/properties/detail",
+    "alias": "Properties detail API",
+    "type": "api"
+  },
+
+  // create
+  {
+    "name": "/api/properties/create",
+    "alias": "Properties create API",
+    "type": "api"
+  },
+
+  // update
+  {
+    "name": "/api/properties/update",
+    "alias": "Properties update API",
+    "type": "api"
+  },
+
+  // search
+  {
+    "name": "/api/properties/search",
+    "alias": "Properties search API",
+    "type": "api"
+  },
+
+  // count
+  {
+    "name": "/api/properties/count",
+    "alias": "Properties count API",
+    "type": "api"
+  },
+
+  // delete
+  {
+    "name": "/api/properties/delete",
+    "alias": "Properties delete API",
+    "type": "api"
+  },
+
+  // Categories API
+
+  // default
+  {
+    "name": "/api/categories",
+    "alias": "Categories API",
+    "type": "api"
+  },
+
+  // detail
+  {
+    "name": "/api/categories/detail",
+    "alias": "Categories detail API",
+    "type": "api"
+  },
+
+  // create
+  {
+    "name": "/api/categories/create",
+    "alias": "Categories create API",
+    "type": "api"
+  },
+
+  // update
+  {
+    "name": "/api/categories/update",
+    "alias": "Categories update API",
+    "type": "api"
+  },
+
+  // search
+  {
+    "name": "/api/categories/search",
+    "alias": "Categories search API",
+    "type": "api"
+  },
+
+  // count
+  {
+    "name": "/api/categories/count",
+    "alias": "Categories count API",
+    "type": "api"
+  },
+
+  // delete
+  {
+    "name": "/api/categories/delete",
+    "alias": "Categories delete API",
+    "type": "api"
+  },
+  // check
+  {
+    "name": "/api/categories/check",
+    "alias": "Categories check API",
+    "type": "api"
+  },
+
+  // Sub Categories API
+
+  // default
+  {
+    "name": "/api/subCategories",
+    "alias": "Properties Sub Categories ",
+    "type": "api"
+  },
+
+  // detail
+  {
+    "name": "/api/subCategories/detail",
+    "alias": "Sub Categories detail API",
+    "type": "api"
+  },
+
+  // create
+  {
+    "name": "/api/subCategories/create",
+    "alias": "Sub Categories create API",
+    "type": "api"
+  },
+
+  // update
+  {
+    "name": "/api/subCategories/update",
+    "alias": "Sub Categories update API",
+    "type": "api"
+  },
+
+  // search
+  {
+    "name": "/api/subCategories/search",
+    "alias": "Sub Categories search API",
+    "type": "api"
+  },
+
+  // count
+  {
+    "name": "/api/subCategories/count",
+    "alias": "Sub Categories count API",
+    "type": "api"
+  },
+
+  // delete
+  {
+    "name": "/api/subCategories/delete",
+    "alias": "Sub Categories delete API",
+    "type": "api"
+  },
+
+  // check
+  {
+    "name": "/api/subCategories/check",
+    "alias": "Sub Categories check API",
+    "type": "api"
+  },
+
+  // Amenities API
+
+  // default
+  {
+    "name": "/api/amenities",
+    "alias": "Amenities API",
+    "type": "api"
+  },
+
+  // detail
+  {
+    "name": "/api/amenities/detail",
+    "alias": "Amenities detail API",
+    "type": "api"
+  },
+
+  // create
+  {
+    "name": "/api/amenities/create",
+    "alias": "Amenities create API",
+    "type": "api"
+  },
+
+  // update
+  {
+    "name": "/api/amenities/update",
+    "alias": "Amenities update API",
+    "type": "api"
+  },
+
+  // search
+  {
+    "name": "/api/amenities/search",
+    "alias": "Amenities search API",
+    "type": "api"
+  },
+
+  // count
+  {
+    "name": "/api/amenities/count",
+    "alias": "Amenities count API",
+    "type": "api"
+  },
+
+  // delete
+  {
+    "name": "/api/amenities/delete",
+    "alias": "Amenities delete API",
+    "type": "api"
+  },
+
+  // check
+  {
+    "name": "/api/amenities/check",
+    "alias": "Amenities check API",
+    "type": "api"
+  },
+  // Highlights API
+
+  // default
+  {
+    "name": "/api/highlights",
+    "alias": "Highlights API",
+    "type": "api"
+  },
+
+  // detail
+  {
+    "name": "/api/highlights/detail",
+    "alias": "Highlights detail API",
+    "type": "api"
+  },
+
+  // create
+  {
+    "name": "/api/highlights/create",
+    "alias": "Highlights create API",
+    "type": "api"
+  },
+
+  // update
+  {
+    "name": "/api/highlights/update",
+    "alias": "Highlights update API",
+    "type": "api"
+  },
+
+  // search
+  {
+    "name": "/api/highlights/search",
+    "alias": "Highlights search API",
+    "type": "api"
+  },
+
+  // count
+  {
+    "name": "/api/highlights/count",
+    "alias": "Highlights count API",
+    "type": "api"
+  },
+
+  // delete
+  {
+    "name": "/api/highlights/delete",
+    "alias": "Highlights delete API",
+    "type": "api"
+  },
+
+  // check
+  {
+    "name": "/api/highlights/check",
+    "alias": "Highlights check API",
+    "type": "api"
+  },
+
+  // Landmarks API
+
+  // default
+  {
+    "name": "/api/landmarks",
+    "alias": "Landmarks API",
+    "type": "api"
+  },
+
+  // detail
+  {
+    "name": "/api/landmarks/detail",
+    "alias": "Landmarks detail API",
+    "type": "api"
+  },
+
+  // create
+  {
+    "name": "/api/landmarks/create",
+    "alias": "Landmarks create API",
+    "type": "api"
+  },
+
+  // update
+  {
+    "name": "/api/landmarks/update",
+    "alias": "Landmarks update API",
+    "type": "api"
+  },
+
+  // search
+  {
+    "name": "/api/landmarks/search",
+    "alias": "Landmarks search API",
+    "type": "api"
+  },
+
+  // count
+  {
+    "name": "/api/landmarks/count",
+    "alias": "Landmarks count API",
+    "type": "api"
+  },
+
+  // delete
+  {
+    "name": "/api/landmarks/delete",
+    "alias": "Landmarks delete API",
+    "type": "api"
+  },
+
+  // check
+  {
+    "name": "/api/landmarks/check",
+    "alias": "Landmarks check API",
+    "type": "api"
+  },
+  // Client
+
+  // Products
+  {
+    "name": "/products",
+    "alias": "Products menu",
+    "type": "client"
+  },
+  {
+    "name": "/products/list",
+    "alias": "Products list",
+    "type": "client"
+  },
+  {
+    "name": "/products/new",
+    "alias": "Products new",
+    "type": "client"
+  },
+  // Users
+  {
+    "name": "/users",
+    "alias": "Users menu",
+    "type": "client"
+  },
+  {
+    "name": "/users/list",
+    "alias": "Users list",
+    "type": "client"
+  },
+  {
+    "name": "/users/new",
+    "alias": "Users new",
+    "type": "client"
+  },
+  // Resources
+  {
+    "name": "/resources",
+    "alias": "Resources menu",
+    "type": "client"
+  },
+  {
+    "name": "/resources/list",
+    "alias": "Resources list",
+    "type": "client"
+  },
+  {
+    "name": "/resources/new",
+    "alias": "Resources new",
+    "type": "client"
+  },
+  // Roles
+  {
+    "name": "/roles",
+    "alias": "Roles menu",
+    "type": "client"
+  },
+  {
+    "name": "/roles/list",
+    "alias": "Roles list",
+    "type": "client"
+  },
+  {
+    "name": "/roles/new",
+    "alias": "Roles new",
+    "type": "client"
+  },
+  // Permissions
+  {
+    "name": "/permissions",
+    "alias": "Permissions menu",
+    "type": "client"
+  },
+  {
+    "name": "/permissions/list",
+    "alias": "Permissions list",
+    "type": "client"
+  },
+  {
+    "name": "/permissions/new",
+    "alias": "Permissions new",
+    "type": "client"
+  },
+
+  // Properties
+  {
+    "name": "/properties",
+    "alias": "Properties menu",
+    "type": "client"
+  },
+  {
+    "name": "/properties/list",
+    "alias": "Properties list",
+    "type": "client"
+  },
+  {
+    "name": "/properties/new",
+    "alias": "Properties new",
+    "type": "client"
+  },
+
+  //Categories
+  {
+    "name": "/categories",
+    "alias": "Categories menu",
+    "type": "client"
+  },
+  {
+    "name": "/categories/list",
+    "alias": "Categories list",
+    "type": "client"
+  },
+  {
+    "name": "/categories/new",
+    "alias": "Categories new",
+    "type": "client"
+  },
+
+  // Sub Categories
+  {
+    "name": "/subCategories",
+    "alias": "Sub Categories menu",
+    "type": "client"
+  },
+  {
+    "name": "/subCategories/list",
+    "alias": "Sub Categories list",
+    "type": "client"
+  },
+  {
+    "name": "/subCategories/new",
+    "alias": "Sub Categories new",
+    "type": "client"
+  },
+
+  // Amenities
+  {
+    "name": "/amenities",
+    "alias": "Amenities menu",
+    "type": "client"
+  },
+  {
+    "name": "/amenities/list",
+    "alias": "Amenities list",
+    "type": "client"
+  },
+  {
+    "name": "/amenities/new",
+    "alias": "Amenities new",
+    "type": "client"
+  },
+
+  // Highlights
+  {
+    "name": "/highlights",
+    "alias": "Highlights menu",
+    "type": "client"
+  },
+  {
+    "name": "/highlights/list",
+    "alias": "Highlights list",
+    "type": "client"
+  },
+  {
+    "name": "/highlights/new",
+    "alias": "Highlights new",
+    "type": "client"
+  },
+
+  // Landmarks
+  {
+    "name": "/landmarks",
+    "alias": "Landmarks menu",
+    "type": "client"
+  },
+  {
+    "name": "/landmarks/list",
+    "alias": "Landmarks list",
+    "type": "client"
+  },
+  {
+    "name": "/landmarks/new",
+    "alias": "Landmarks new",
+    "type": "client"
+  },
+
+  // Components
+  {
+    "name": "user-list-delete-btn",
+    "alias": "User list delete button",
+    "type": "client"
+  },
+  {
+    "name": "role-list-delete-btn",
+    "alias": "Role list delete button",
+    "type": "client"
+  },
+  {
+    "name": "permission-list-delete-btn",
+    "alias": "Permission list delete button",
+    "type": "client"
+  },
+  {
+    "name": "product-list-delete-btn",
+    "alias": "Product list delete button",
+    "type": "client"
+  },
+  {
+    "name": "property-list-delete-btn",
+    "alias": "Property list delete button",
+    "type": "client"
+  },
+  {
+    "name": "category-list-delete-btn",
+    "alias": "Category list delete button",
+    "type": "client"
+  },
+  {
+    "name": "subCategory-list-delete-btn",
+    "alias": "Sub Category list delete button",
+    "type": "client"
+  },
+  {
+    "name": "amenity-list-delete-btn",
+    "alias": "Amenity list delete button",
+    "type": "client"
+  },
+  {
+    "name": "highlight-list-delete-btn",
+    "alias": "Highlight list delete button",
+    "type": "client"
+  },
+  {
+    "name": "landmark-list-delete-btn",
+    "alias": "Landmark list delete button",
+    "type": "client"
+  }
+]
