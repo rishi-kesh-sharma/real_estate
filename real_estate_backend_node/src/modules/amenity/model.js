@@ -19,32 +19,31 @@ const schema = new mongoose.Schema(
         ref: "SubCategory",
       },
     ],
-    fieldType: {
-      type: String,
-      enums: ["select", "checkbox", "radio"],
-    },
-    options: [
-      {
-        id: {
-          type: String,
-          required: true,
-        },
-        name: {
-          type: String,
-          required: true,
-        },
-        label: {
-          type: String,
-          required: true,
-        },
-        value: {
-          type: String,
-          required: true,
-        },
-      },
-    ],
+    // fieldType: {
+    //   type: String,
+    //   enums: ["select", "checkbox", "radio"],
+    // },
+    // options: [
+    //   {
+    //     id: {
+    //       type: String,
+    //       required: true,
+    //     },
+    //     name: {
+    //       type: String,
+    //       required: true,
+    //     },
+    //     label: {
+    //       type: String,
+    //       required: true,
+    //     },
+    //     value: {
+    //       type: String,
+    //       required: true,
+    //     },
+    //   },
+    // ],
     description: { type: String, required: true },
-
     images: [],
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,

@@ -7,9 +7,11 @@ const schema = Joi.object().keys({
   relatedPurpose: Joi.array()
     .items(Joi.string().valid("rent", "sale"))
     .required(),
-  relatedCategory: Joi.array().items(Joi.string().required()).optional(), // Assuming relatedCategory is an array of ObjectIDs as strings and optional
-  relatedSubCategory: Joi.array().items(Joi.string().required()).optional(), // Assuming relatedSubCategory is an array of ObjectIDs as strings and optional
-  fieldType: Joi.string().valid("select", "checkbox", "radio").required(),
+  relatedCategories: Joi.array().items(Joi.string().required()).optional(), // Assuming relatedCategory is an array of ObjectIDs as strings and optional
+  relatedSubCategories: Joi.array().items(Joi.string().required()).optional(), // Assuming relatedSubCategory is an array of ObjectIDs as strings and optional
+  fieldType: Joi.string()
+    .valid("select", "checkbox", "radio", "text", "number")
+    .required(),
   options: Joi.array()
     .items(
       Joi.object({
@@ -21,7 +23,7 @@ const schema = Joi.object().keys({
     )
     .required(),
   description: Joi.string().required(),
-  images: Joi.array().items(Joi.string().required()).required(), // Assuming images are array of ObjectIDs as strings and optional
+  images: Joi.array().items(Joi.string().required()).optional(), // Assuming images are array of ObjectIDs as strings and optional
 });
 
 const validate = (data, user) => {

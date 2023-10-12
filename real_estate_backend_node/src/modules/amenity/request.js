@@ -9,19 +9,20 @@ const schema = Joi.object().keys({
     .required(),
   relatedCategories: Joi.array().items(Joi.string().required()).optional(),
   relatedSubCategories: Joi.array().items(Joi.string().required()).optional(),
-  fieldType: Joi.string().valid("select", "checkbox", "radio").required(),
-  options: Joi.array()
-    .items(
-      Joi.object({
-        id: Joi.string().required(),
-        name: Joi.string().required(),
-        label: Joi.string().required(),
-        value: Joi.string().required(),
-      })
-    )
-    .required(),
+  // fieldType: Joi.string().valid("select", "checkbox", "radio").required(),
+  // options: Joi.array()
+  //   .items(
+  //     Joi.object({
+  //       id: Joi.string().required(),
+  //       name: Joi.string().required(),
+  //       label: Joi.string().required(),
+  //       value: Joi.string().required(),
+  //     })
+  //   )
+  //   .required(),
   description: Joi.string().required(),
-  images: Joi.array().items(Joi.string().required()).required(),
+  // images: Joi.array().items(Joi.string().required()).required(),
+  images: Joi.array().items(Joi.string().required()).optional(),
 });
 
 const validate = (data, user) => {

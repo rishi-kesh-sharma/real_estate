@@ -4,8 +4,8 @@ const { MongoError } = require("../../common/errors");
 // schema
 const schema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
-    alias: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
+    alias: { type: String, required: true, unique: true },
     relatedPurpose: [{ type: String, required: true, enums: ["rent", "sale"] }],
     relatedCategories: [
       {
@@ -13,7 +13,7 @@ const schema = new mongoose.Schema(
         ref: "Category",
       },
     ],
-    relatedSubCategory: [
+    relatedSubCategories: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "SubCategory",
@@ -21,7 +21,7 @@ const schema = new mongoose.Schema(
     ],
     fieldType: {
       type: String,
-      enums: ["select", "checkbox", "radio"],
+      enums: ["select", "checkbox", "radio", "number", "text"],
     },
     options: [
       {
@@ -68,6 +68,7 @@ const schema = new mongoose.Schema(
 // indices
 // text index for name
 schema.index({ name: "text" });
+schema.index({ fieldType: "text" });
 
 // index for createdAt and updatedAt
 schema.index({ createdAt: 1 });

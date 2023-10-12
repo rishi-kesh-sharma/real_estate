@@ -49,6 +49,7 @@ const schema = new mongoose.Schema(
     hasPrice: {
       type: Boolean,
       required: true,
+      default: true,
     },
     price: {
       type: Number,
@@ -112,6 +113,16 @@ const schema = new mongoose.Schema(
 // indices
 // text index for name
 schema.index({ name: "text" });
+schema.index({ purpose: "text" });
+schema.index({ "location.municipality": "text" });
+schema.index({ "location.district": "text" });
+schema.index({ "location.province": "text" });
+schema.index({ "location.tole": "text" });
+schema.index({ postalCode: 1 });
+schema.index({ hasPrice: 1 });
+schema.index({ category: 1 });
+schema.index({ subCategory: 1 });
+schema.index({ ownership: 1 });
 
 // index for createdAt and updatedAt
 schema.index({ createdAt: 1 });

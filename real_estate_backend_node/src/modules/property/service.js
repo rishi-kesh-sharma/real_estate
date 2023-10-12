@@ -11,24 +11,39 @@ const getQuery = (payload) => {
 
   // filter based on purpose
   if (payload.purpose) {
-    queries.push({ purpose: { $regex: payload.name, $options: "i" } });
+    queries.push({ purpose: { $regex: payload.purpose, $options: "i" } });
   }
 
   // filter based on location
   if (payload.location) {
     // filter based on district
     if (payload.location.district) {
-      queries.push({ "location.district": payload.location.district });
+      queries.push({
+        "location.district": {
+          $regex: payload.location.district,
+          $options: "i",
+        },
+      });
     }
 
     // filter based on province
     if (payload.location.province) {
-      queries.push({ "location.province": payload.location.province });
+      queries.push({
+        "location.province": {
+          $regex: payload.location.province,
+          $options: "i",
+        },
+      });
     }
 
     // filter based on municipality
     if (payload.location.municipality) {
-      queries.push({ "location.municipality": payload.location.municipality });
+      queries.push({
+        "location.municipality": {
+          $regex: payload.location.municipality,
+          $options: "i",
+        },
+      });
     }
     // filter based on ward
     if (payload.location.ward) {
@@ -37,17 +52,21 @@ const getQuery = (payload) => {
 
     // filter based on tole
     if (payload.location.tole) {
-      queries.push({ "location.tole": payload.location.tole });
+      queries.push({
+        "location.tole": {
+          $regex: payload.location.tole,
+          $options: "i",
+        },
+      });
     }
   }
-
   // filter based on postal code
   if (payload.postalCode) {
     queries.push({ postalCode: { $regex: payload.postalCode, $options: "i" } });
   }
 
   // filter based on hasPrice
-  if (payload.hasPrice) {
+  if (payload.hasPrice === true || payload.hasPrice === false) {
     queries.push({ hasPrice: payload.hasPrice });
   }
 
@@ -61,12 +80,12 @@ const getQuery = (payload) => {
   }
   // filter based on category
   if (payload.category) {
-    queries.push({ category: { $regex: payload.category, $options: "i" } });
+    queries.push({ category: payload.category });
   }
   // filter based on sub category
   if (payload.subCategory) {
     queries.push({
-      subCategory: { $regex: payload.subCategory, $options: "i" },
+      subCategory: payload.subCategory,
     });
   }
   // filter based on ownership

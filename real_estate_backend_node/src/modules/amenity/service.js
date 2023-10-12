@@ -5,13 +5,13 @@ const getQuery = (payload) => {
   const subQueries = [{}];
   let categoryQuery = {};
   if (payload.categoryId) {
-    categoryQuery = { relatedCategory: new ObjectId(payload.categoryId) };
+    categoryQuery = { relatedCategories: new ObjectId(payload.categoryId) };
     subQueries.push(categoryQuery);
   }
   let subCategoryQuery = {};
   if (payload.subCategoryId) {
     subCategoryQuery = {
-      relatedSubCategory: new ObjectId(payload.subCategoryId),
+      relatedSubCategories: new ObjectId(payload.subCategoryId),
     };
     subQueries.push(subCategoryQuery);
   }

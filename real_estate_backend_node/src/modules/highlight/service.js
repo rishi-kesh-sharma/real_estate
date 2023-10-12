@@ -2,9 +2,23 @@ const { ObjectId } = require("mongoose").Types;
 const { name } = require("./model");
 
 const getQuery = (payload) => {
-  let query = {};
+  const subQueries = [{}];
+  let categoryQuery = {};
+  if (payload.categoryId) {
+    categoryQuery = { relatedCategories: new ObjectId(payload.categoryId) };
+    subQueries.push(categoryQuery);
+  }
+  let subCategoryQuery = {};
+  if (payload.subCategoryId) {
+    subCategoryQuery = {
+      relatedSubCategories: new ObjectId(payload.subCategoryId),
+    };
+    subQueries.push(subCategoryQuery);
+  }
+
+  let nameQuery = [];
   if (payload.name) {
-    query = {
+    nameQuery = {
       $or: [
         { alias: { $regex: payload.name, $options: "i" } },
         { name: { $regex: payload.name, $options: "i" } },
@@ -12,7 +26,12 @@ const getQuery = (payload) => {
         { fieldType: { $regex: payload.name, $options: "i" } },
       ],
     };
+    subQueries.push(nameQuery);
   }
+
+  query = {
+    $and: [...subQueries],
+  };
   return query;
 };
 

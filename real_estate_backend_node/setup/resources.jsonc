@@ -216,53 +216,53 @@
   // Products API
 
   // default
-  {
-    "name": "/api/products",
-    "alias": "Products API",
-    "type": "api"
-  },
+  // {
+  //   "name": "/api/products",
+  //   "alias": "Products API",
+  //   "type": "api"
+  // },
 
   // detail
-  {
-    "name": "/api/products/detail",
-    "alias": "Products detail API",
-    "type": "api"
-  },
+  // {
+  //   "name": "/api/products/detail",
+  //   "alias": "Products detail API",
+  //   "type": "api"
+  // },
 
   // create
-  {
-    "name": "/api/products/create",
-    "alias": "Products create API",
-    "type": "api"
-  },
+  // {
+  //   "name": "/api/products/create",
+  //   "alias": "Products create API",
+  //   "type": "api"
+  // },
 
   // update
-  {
-    "name": "/api/products/update",
-    "alias": "Products update API",
-    "type": "api"
-  },
+  // {
+  //   "name": "/api/products/update",
+  //   "alias": "Products update API",
+  //   "type": "api"
+  // },
 
   // search
-  {
-    "name": "/api/products/search",
-    "alias": "Products search API",
-    "type": "api"
-  },
+  // {
+  //   "name": "/api/products/search",
+  //   "alias": "Products search API",
+  //   "type": "api"
+  // },
 
   // count
-  {
-    "name": "/api/products/count",
-    "alias": "Products count API",
-    "type": "api"
-  },
+  // {
+  //   "name": "/api/products/count",
+  //   "alias": "Products count API",
+  //   "type": "api"
+  // },
 
   // delete
-  {
-    "name": "/api/products/delete",
-    "alias": "Products delete API",
-    "type": "api"
-  },
+  // {
+  //   "name": "/api/products/delete",
+  //   "alias": "Products delete API",
+  //   "type": "api"
+  // },
 
   // Properties API
 
@@ -605,21 +605,21 @@
   // Client
 
   // Products
-  {
-    "name": "/products",
-    "alias": "Products menu",
-    "type": "client"
-  },
-  {
-    "name": "/products/list",
-    "alias": "Products list",
-    "type": "client"
-  },
-  {
-    "name": "/products/new",
-    "alias": "Products new",
-    "type": "client"
-  },
+  // {
+  //   "name": "/products",
+  //   "alias": "Products menu",
+  //   "type": "client"
+  // },
+  // {
+  //   "name": "/products/list",
+  //   "alias": "Products list",
+  //   "type": "client"
+  // },
+  // {
+  //   "name": "/products/new",
+  //   "alias": "Products new",
+  //   "type": "client"
+  // },
   // Users
   {
     "name": "/users",

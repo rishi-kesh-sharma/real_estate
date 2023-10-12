@@ -4,7 +4,7 @@ const schema = Joi.object().keys({
   _id: Joi.string().optional(),
   name: Joi.string().required(),
   alias: Joi.string().required(),
-  relatedCategory: Joi.array().items(Joi.string()).required(),
+  relatedCategories: Joi.array().items(Joi.string()).required(),
   description: Joi.string().required(),
   images: Joi.array().items(Joi.string().required()).optional(), // Assuming images are array of ObjectIDs as strings and optional
 });

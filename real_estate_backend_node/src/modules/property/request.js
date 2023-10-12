@@ -7,11 +7,12 @@ const schema = Joi.object().keys({
   location: Joi.object().keys({
     province: Joi.string().required(),
     district: Joi.string().required(),
+    municipality: Joi.string().required(),
     ward: Joi.number().optional().max(35).min(0),
     tole: Joi.string().optional(),
   }),
-  mapIframe: Joi.string().min(3).max(30).optional(),
-  postalCode: Joi.number().min(3).max(30).optional(),
+  mapIframe: Joi.string().min(10).max(100).optional(),
+  postalCode: Joi.number().min(3).max(1000000).optional(),
   contactInfo: Joi.object().keys({
     email: Joi.string().email().optional(),
     phone: Joi.string()
@@ -28,8 +29,6 @@ const schema = Joi.object().keys({
   amenities: Joi.array().items(Joi.string().required()).optional(),
   images: Joi.array().items(Joi.string().required()).optional(),
   landmarks: Joi.array().items(Joi.string().required()).optional(),
-  createdBy: Joi.string().required().default("000000000000"),
-  updatedBy: Joi.string().required().default("000000000000"),
 });
 
 const validate = (data) => {
