@@ -1,5 +1,3 @@
-
-
 export default {
-    'GET  /api/notices': [],
+  'GET  /api/notices': [],
 };

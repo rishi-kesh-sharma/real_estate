@@ -5,7 +5,14 @@ import defaultSettings from './defaultSettings';
 import proxy from './proxy';
 
 const { REACT_APP_ENV, REACT_APP_API_URL, REACT_APP_DEFAULT_PAGE_SIZE } = process.env;
-console.log('REACT_APP_ENV', REACT_APP_ENV, 'REACT_APP_API_URL', REACT_APP_API_URL, 'REACT_APP_DEFAULT_PAGE_SIZE', REACT_APP_DEFAULT_PAGE_SIZE);
+console.log(
+  'REACT_APP_ENV',
+  REACT_APP_ENV,
+  'REACT_APP_API_URL',
+  REACT_APP_API_URL,
+  'REACT_APP_DEFAULT_PAGE_SIZE',
+  REACT_APP_DEFAULT_PAGE_SIZE,
+);
 export default defineConfig({
   hash: true,
   antd: {},
@@ -83,32 +90,63 @@ export default defineConfig({
         },
       ],
     },
+    // {
+    //   path: '/dashboard',
+    //   name: 'dashboard',
+    //   icon: 'dashboard',
+    //   routes: [
+    //     {
+    //       path: '/dashboard',
+    //       redirect: '/dashboard/analysis',
+    //     },
+    //     {
+    //       name: 'analysis',
+    //       icon: 'smile',
+    //       path: '/dashboard/analysis',
+    //       component: './dashboard/analysis',
+    //     },
+    //     {
+    //       name: 'monitor',
+    //       icon: 'smile',
+    //       path: '/dashboard/monitor',
+    //       component: './dashboard/monitor',
+    //     },
+    //     {
+    //       name: 'workplace',
+    //       icon: 'smile',
+    //       path: '/dashboard/workplace',
+    //       component: './dashboard/workplace',
+    //     },
+    //   ],
+    // },
     {
-      path: '/dashboard',
-      name: 'dashboard',
-      icon: 'dashboard',
+      access: 'canAccess',
+      path: '/properties',
+      icon: 'form',
+      name: 'Properties',
       routes: [
         {
-          path: '/dashboard',
-          redirect: '/dashboard/analysis',
+          path: '/properties',
+          redirect: '/properties/list',
         },
         {
-          name: 'analysis',
+          name: 'List',
           icon: 'smile',
-          path: '/dashboard/analysis',
-          component: './dashboard/analysis',
+          path: '/properties/list',
+          component: './property/property-list',
         },
         {
-          name: 'monitor',
+          name: 'New',
           icon: 'smile',
-          path: '/dashboard/monitor',
-          component: './dashboard/monitor',
+          path: '/properties/new',
+          component: './properties/property-entry',
         },
         {
-          name: 'workplace',
+          name: 'Update',
+          hideInMenu: true,
           icon: 'smile',
-          path: '/dashboard/workplace',
-          component: './dashboard/workplace',
+          path: '/properties/edit/:id',
+          component: './property/property-update',
         },
       ],
     },
@@ -358,7 +396,6 @@ export default defineConfig({
           path: '/products/edit/:id',
           component: './product/product-update',
         },
-
       ],
     },
     {
