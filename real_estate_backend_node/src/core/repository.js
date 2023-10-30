@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const eventEmitter = require("./event-manager").getInstance();
 
 const save = async (item, modelName) => {
+  console.log(item, "this is model items");
   const model = new mongoose.models[modelName](item);
   const savedItem = await model.save();
   eventEmitter.emit(`${modelName}Created`, savedItem);
@@ -9,10 +10,10 @@ const save = async (item, modelName) => {
 };
 
 const update = async (item, modelName) => {
-  const doc = await mongoose.models[modelName].updateOne(
+  const doc = await mongoose.models[modelName].findByIdAndUpdate(
     { _id: item._id },
     item,
-    {}
+    { new: true, runValidators: true }
   );
   eventEmitter.emit(`${modelName}Updated`, doc);
   return doc;
@@ -34,9 +35,10 @@ const deleteById = async (id, modelName) => {
   throw new Error(`Product not found by the id: ${id}`);
 };
 
-const getById = async (id, modelName) => {
-  const model = await mongoose.models[modelName].findById(id).populate();
-  
+const getById = async (id, modelName, populate) => {
+  const model = await mongoose.models[modelName]
+    .findById(id)
+    .populate(populate ? `${populate}` : null);
   if (model == null) {
     throw new Error(`${modelName} not found by the id: ${id}`);
   }
@@ -70,7 +72,7 @@ const count = async (query, modelName) => {
   return data;
 };
 
-const search = async (payload, query, modelName) => {
+const search = async (payload, query, modelName, limit) => {
   const sort = getSortClause(payload);
   const take = parseInt(process.env.DEFAULT_PAGE_SIZE, 10);
   const skip = (parseInt(payload.current, 10) - 1) * take;
@@ -80,7 +82,7 @@ const search = async (payload, query, modelName) => {
       ? await data.lean().populate(payload.populate).exec()
       : await data
           .skip(skip)
-          .limit(take)
+          .limit(limit || take)
           .lean()
           .populate(payload.populate)
           .exec();

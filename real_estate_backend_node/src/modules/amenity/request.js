@@ -4,9 +4,7 @@ const schema = Joi.object().keys({
   _id: Joi.string().optional(),
   name: Joi.string().required(),
   alias: Joi.string().required(),
-  relatedPurpose: Joi.array()
-    .items(Joi.string().valid("rent", "sale"))
-    .required(),
+  relatedPurpose: Joi.string().valid("rent", "sale").required(),
   relatedCategories: Joi.array().items(Joi.string().required()).optional(),
   relatedSubCategories: Joi.array().items(Joi.string().required()).optional(),
   // fieldType: Joi.string().valid("select", "checkbox", "radio").required(),

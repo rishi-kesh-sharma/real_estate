@@ -1,6 +1,7 @@
 const { ObjectId } = require("mongoose").Types;
 const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
+const multer = require("multer");
 const { GeneralError } = require("./errors");
 const { searchOne } = require("../core/repository");
 
@@ -50,7 +51,6 @@ const handleValidation = (validate) => (req, res, next) => {
   }
   const { details } = result.error;
   const messages = details.map((e) => e.message);
-  console.log(messages);
   const msg = messages.join(",");
   // throw new BadRequest(msg);
   return res.status(400).send({ status: "error", message: msg });
@@ -58,6 +58,7 @@ const handleValidation = (validate) => (req, res, next) => {
 
 const authenticateRequest = async (req, res, next) => {
   let auth = req.headers.authorization;
+  console.log(auth, "this is auth token");
 
   if (auth) {
     auth = auth.replace("Bearer ", "");
@@ -71,6 +72,7 @@ const authenticateRequest = async (req, res, next) => {
           errorMessage: err.message || "Invalid token",
         });
       } else {
+        console.log(decoded, "this is decoded username");
         req.user = decoded;
         req.log = req.log.child({ username: req.user.username });
         req.log.info(`Authenticated user ${req.user.username}`);
@@ -85,6 +87,7 @@ const authenticateRequest = async (req, res, next) => {
 // authorize request
 const authorizeRequest = async (req, res, next) => {
   const { user } = req;
+  console.log(req.user);
   if (user) {
     const { username, roleId } = user;
     const permission = await searchOne(
@@ -111,16 +114,14 @@ const authorizeRequest = async (req, res, next) => {
 };
 
 const singleUploader = () => {
-  const multer = require("multer");
-
   const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
+    destination(req, file, cb) {
       cb(null, `public/images/${req.query.folder || ""}`);
     },
-    filename: function (req, file, cb) {
+    filename(req, file, cb) {
       cb(
         null,
-        new Date().toISOString().replace(/:/g, "-") + "-" + file.originalname
+        `${new Date().toISOString().replace(/:/g, "-")}-${file.originalname}`
       ); // 23/08/2022
     },
   });
@@ -130,7 +131,7 @@ const singleUploader = () => {
       file.mimetype === "image/png" ||
       file.mimetype === "image/jpg" ||
       file.mimetype === "image/jpeg" ||
-      file.mimetype === "image/svg"
+      file.mimetype === "image/svg+xml" // Corrected MIME type for SVG
     ) {
       cb(null, true);
     } else {
@@ -142,20 +143,15 @@ const singleUploader = () => {
   return upload.single("image");
 };
 
-const multiUploader = (folder, name) => {
-  const multer = require("multer");
-
+const multiUploader = () => {
   const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      console.log("folder");
-      console.log(req.query.folder);
-      console.log("folder");
+    destination(req, file, cb) {
       cb(null, `public/images/${req.query.folder || ""}`);
     },
-    filename: function (req, file, cb) {
+    filename(req, file, cb) {
       cb(
         null,
-        new Date().toISOString().replace(/:/g, "-") + "-" + file.originalname
+        `${new Date().toISOString().replace(/:/g, "-")}-${file.originalname}`
       ); // 23/08/2022
     },
   });

@@ -2,7 +2,7 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
 const { ObjectId } = require("mongoose").Types;
-const { handleValidation } = require("../../common/middlewares");
+const { handleValidation , authenticateRequest } = require("../../common/middlewares");
 const {
   sendPasswordResetEmail,
   sendPasswordResetSuccessfulEmail,
@@ -58,6 +58,7 @@ const createUserHandler = async (req, res, next) => {
     return next(error);
   }
 };
+
 const loginHandler = async (req, res) => {
   if (req.body.username && req.body.password) {
     const user = await checkUser(req.body.username, req.body.password);
@@ -69,7 +70,6 @@ const loginHandler = async (req, res) => {
         });
       }
       const permissions = await searchPermissions(user.roleId);
-      console.log(process.env.JWT_SECRET);
       const token = jwt.sign(
         {
           id: user._id,
@@ -276,6 +276,11 @@ const activateAccountHandler = async (req, res) => {
   });
 };
 
+const getLoggedInUser = async (req, res) => {
+  const { user } = req;
+  res.status(200).json(user);
+};
+
 router.post(
   "/register",
   handleValidation(validateRegistration),
@@ -291,5 +296,6 @@ router.post(
   handleValidation(validateUsername),
   checkUsernameHandler
 );
+router.get("/getloggedinuser", authenticateRequest, getLoggedInUser);
 
 module.exports = router;

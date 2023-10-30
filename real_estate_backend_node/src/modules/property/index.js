@@ -1,8 +1,8 @@
 const routes = require("./controller");
-const {
-  authenticateRequest,
-  authorizeRequest,
-} = require("../../common/middlewares");
+// const {
+//   authenticateRequest,
+//   authorizeRequest,
+// } = require("../../common/middlewares");
 const { name: ModelName } = require("./model");
 
 const processRequest = async (req, res, next) => {
@@ -11,13 +11,7 @@ const processRequest = async (req, res, next) => {
 };
 
 const init = async (app) => {
-  app.use(
-    "/api/properties",
-    authenticateRequest,
-    authorizeRequest,
-    processRequest,
-    routes
-  );
+  app.use("/api/properties", processRequest, routes);
   return app;
 };
 

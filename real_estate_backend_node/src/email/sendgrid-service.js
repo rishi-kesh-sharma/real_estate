@@ -44,6 +44,7 @@ const sendPasswordResetSuccessfulEmail = async (to, subject) => {
 };
 
 const sendAccountCreatedEmail = async (to, subject, token, user) => {
+  console.log(to, subject, token, user);
   let recipient = to;
   if (to.endsWith("myraj.com")) {
     recipient = process.env.DEFAULT_EMAIL_RECEIVER;

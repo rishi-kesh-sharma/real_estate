@@ -6,6 +6,10 @@ const schema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     purpose: { type: String, required: true, enums: ["rent", "sale"] },
+    isFeatured: {
+      type: Boolean,
+      default: false,
+    },
     location: {
       province: {
         type: String,
@@ -42,7 +46,7 @@ const schema = new mongoose.Schema(
         required: false,
       },
       phone: {
-        type: Number,
+        type: String,
         required: false,
       },
     },
@@ -83,12 +87,10 @@ const schema = new mongoose.Schema(
         ref: "Amenity",
       },
     ],
-    images: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Image",
-      },
-    ],
+    images: {
+      type: Array,
+      default: [],
+    },
     landmarks: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -96,11 +98,40 @@ const schema = new mongoose.Schema(
         ref: "Landmark",
       },
     ],
-    createdBy: {
-      type: mongoose.Schema.Types.ObjectId,
+    bathroom: {
+      type: Number,
+      default: 0,
       required: true,
-      default: "000000000000",
     },
+    room: {
+      type: Number,
+      default: 0,
+      required: true,
+    },
+    area: {
+      type: Number,
+      default: 0,
+      required: true,
+    },
+    rentFrequency: {
+      type: String,
+      default: "month",
+      enum: ["day", "week", "month", "year"],
+    },
+    furnishingStatus: {
+      type: String,
+      default: "not-furnished",
+      enum: ["not-furnished", "semi-furnished", "fully-furnished"],
+      required: true,
+    },
+    isSold: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
+
+    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+
     updatedBy: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
@@ -120,6 +151,7 @@ schema.index({ "location.province": "text" });
 schema.index({ "location.tole": "text" });
 schema.index({ postalCode: 1 });
 schema.index({ hasPrice: 1 });
+schema.index({ isFeatured: 1 });
 schema.index({ category: 1 });
 schema.index({ subCategory: 1 });
 schema.index({ ownership: 1 });
@@ -136,6 +168,7 @@ schema.post("save", (error, doc, next) => {
     // if error.message contains the substring 'duplicate key error' then it's a duplicate entry
     if (error.message.includes("duplicate key error")) {
       const keyName = Object.keys(error.keyValue)[0];
+      // eslint-disable-next-line no-undef
       const errorMessage = `${keyMapping[keyName]} already exists`;
       next(new MongoError(errorMessage));
     } else next(new MongoError(error.message));

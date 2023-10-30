@@ -11,16 +11,29 @@ const schema = Joi.object().keys({
     ward: Joi.number().optional().max(35).min(0),
     tole: Joi.string().optional(),
   }),
-  mapIframe: Joi.string().min(10).max(100).optional(),
+
+  mapIframe: Joi.string()
+    .min(10)
+    .max(1000000)
+    .message("error in mapIframe")
+    .optional(),
   postalCode: Joi.number().min(3).max(1000000).optional(),
   contactInfo: Joi.object().keys({
     email: Joi.string().email().optional(),
     phone: Joi.string()
-      .regex(/^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$/)
+      .regex(/^[6789]\d{9}$/)
+      .message("Phone number must be a 10-digit number")
       .optional(),
   }),
   hasPrice: Joi.boolean().required(),
+  isFeatured: Joi.boolean().required(),
   price: Joi.number().min(0).max(100000000).optional(),
+  bathroom: Joi.number().min(0).max(100000000),
+  room: Joi.number().min(0).max(100000000),
+  area: Joi.number().min(0).max(100000000),
+  rentFrequency: Joi.string().required(),
+  furnishingStatus: Joi.string().required(),
+  isSold: Joi.boolean().optional(),
   description: Joi.string().min(3).max(100),
   category: Joi.string().required(),
   subCategory: Joi.string().required(),
@@ -32,7 +45,52 @@ const schema = Joi.object().keys({
 });
 
 const validate = (data) => {
-  const result = schema.validate(data);
+  const tempData = { ...data };
+
+  console.log(
+    tempData,
+    "this is tempData bvhgdvxh sjd cjk sjdc bjhbshjdc jhj jdhbhjdcjd cjcd"
+  );
+
+  if (typeof tempData.location === "string") {
+    console.log(typeof tempData.location, "this is type of location")
+    try {
+      tempData.location = JSON.parse(tempData.location);
+    } catch (error) {
+      // Handle any parsing errors here
+      throw new Error("Error parsing 'location' property as JSON");
+    }
+  }
+  if (typeof tempData.contactInfo === "string") {
+    try {
+      tempData.contactInfo = JSON.parse(tempData.contactInfo);
+    } catch (error) {
+      // Handle any parsing errors here
+      throw new Error("Error parsing 'contactInfo' property as JSON");
+    }
+  }
+  if (typeof tempData.highlights === "string") {
+    try {
+      tempData.highlights = JSON.parse(tempData.highlights);
+    } catch (error) {
+      // Handle any parsing errors here
+      throw new Error("Error parsing 'highlights' property as JSON");
+    }
+  }
+  if (typeof tempData.amenities === "string") {
+    try {
+      tempData.amenities = JSON.parse(tempData.amenities);
+    } catch (error) {
+      // Handle any parsing errors here
+      throw new Error("Error parsing 'amenities' property as JSON");
+    }
+  }
+
+
+  
+  console.log(tempData.highlights, tempData.amenities);
+  const result = schema.validate(tempData);
+
   // const temp = { ...data };
   // if (!data.manufacturingDate) {
   //   temp.manufacturingDate = new Date();

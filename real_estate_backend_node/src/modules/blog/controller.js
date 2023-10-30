@@ -13,6 +13,7 @@ const {
   handleValidation,
   authenticateRequest,
   authorizeRequest,
+  multiUploader,
 } = require("../../common/middlewares");
 
 const router = express.Router();
@@ -31,6 +32,7 @@ router.post(
   authenticateRequest,
   authorizeRequest,
   handleValidation(validate),
+  multiUploader(),
   saveHandler
 );
 router.put(
