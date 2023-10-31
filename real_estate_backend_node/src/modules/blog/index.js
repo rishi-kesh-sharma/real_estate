@@ -1,8 +1,8 @@
 const routes = require("./controller");
-const {
-  authenticateRequest,
-  authorizeRequest,
-} = require("../../common/middlewares");
+// const {
+//   authenticateRequest,
+//   authorizeRequest,
+// } = require("../../common/middlewares");
 
 const { name: ModelName } = require("./model");
 

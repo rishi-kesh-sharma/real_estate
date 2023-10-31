@@ -10,6 +10,8 @@ const schema = Joi.object().keys({
 });
 
 const validate = (data, user) => {
+  console.log(data, "this is data for validation")
+  console.log(user, "thius is user ")
   const result = schema.validate(data);
   result.value = {
     ...data,

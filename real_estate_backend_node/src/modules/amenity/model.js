@@ -6,7 +6,7 @@ const schema = new mongoose.Schema(
   {
     name: { type: String, required: true, unique: true },
     alias: { type: String, required: true, unique: true },
-    relatedPurpose: [{ type: String, required: true, enums: ["rent", "sale"] }],
+    relatedPurpose: { type: String, required: true, enums: ["rent", "sale"] },
     relatedCategories: [
       {
         type: mongoose.Schema.Types.ObjectId,

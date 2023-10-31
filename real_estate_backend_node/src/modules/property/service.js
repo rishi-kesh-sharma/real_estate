@@ -70,6 +70,23 @@ const getQuery = (payload) => {
     queries.push({ hasPrice: payload.hasPrice });
   }
 
+  // filter based on isFeatured
+  if (payload.isFeatured === true || payload.isFeatured === false) {
+    queries.push({ isFeatured: payload.isFeatured });
+  }
+
+  // filter based on isSold
+  if (payload.isSold === true || payload.isSold === false) {
+    queries.push({ isSold: payload.isSold });
+  }
+
+  // filter based on the frunishing status
+  if (payload.furnishingStatus) {
+    queries.push({
+      furnishingStatus: { $regex: payload.furnishingStatus, $options: "i" },
+    });
+  }
+
   // filter based on price range
   if (payload.priceRange) {
     const startingPrice = payload.priceRange[0];
@@ -78,16 +95,26 @@ const getQuery = (payload) => {
       price: { $gte: new Date(startingPrice), $lte: new Date(endingPrice) },
     });
   }
+
   // filter based on category
   if (payload.category) {
     queries.push({ category: payload.category });
   }
+
   // filter based on sub category
   if (payload.subCategory) {
     queries.push({
       subCategory: payload.subCategory,
     });
   }
+
+  // filter based on the rentFrequency
+  if (payload.rentFrequency) {
+    queries.push({
+      rentFrequency: payload.rentFrequency,
+    });
+  }
+
   // filter based on ownership
   if (payload.ownership) {
     queries.push({ ownership: { $regex: payload.ownership, $options: "i" } });
@@ -96,9 +123,22 @@ const getQuery = (payload) => {
   // filter based on listed date range
   if (payload.listingDateRange) {
     const fromDate = payload.listingDateRange[0];
-    const toDate = payload.listingDateRange[1];
+    let toDate = payload.listingDateRange[1];
+    // Adjust toDate to the end of the day
+    toDate = new Date(toDate);
+    toDate.setHours(23, 59, 59, 999);
     queries.push({
-      createdAt: { $gte: new Date(fromDate), $lte: new Date(toDate) },
+      createdAt: { $gte: new Date(fromDate), $lte: toDate },
+    });
+  }
+
+  // filter based on th area range
+  if (payload.areaRange) {
+    const fromArea = payload.areaRange[0];
+    const toArea = payload.areaRange[1];
+
+    queries.push({
+      area: { $gte: fromArea, $lte: toArea },
     });
   }
 
@@ -128,5 +168,5 @@ const getQuery = (payload) => {
 
 module.exports = {
   getQuery,
-  ModelName: ModelName,
+  ModelName,
 };
