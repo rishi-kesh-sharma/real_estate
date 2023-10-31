@@ -42,6 +42,7 @@ const validate = (data) => {
       throw new Error("Error parsing 'keywords' property as JSON");
     }
   }
+  console.log(tempData, "this is tempdata ");
   const result = schema.validate(tempData);
   return result;
 };

@@ -16,7 +16,6 @@ const getQuery = (payload) => {
     });
   }
 
-
   let query = {};
   if (queries.length === 1) {
     query = { ...queries[0] };
