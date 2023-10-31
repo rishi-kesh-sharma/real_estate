@@ -1,3 +1,5 @@
+/dashboard/node_modules
+/dashboard/.env
 /real_estate_backend_node/node_modules
 /real_estate_backend_node/.env
 /real_estate_frontend_next/node_modules
