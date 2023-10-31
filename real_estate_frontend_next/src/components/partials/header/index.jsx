@@ -20,6 +20,7 @@ const Navbar = () => {
   const [show, setShow] = useState(false);
   const [currentDevice, setCurrentDevice] = useState("lg");
   const profileData = useContext(profileContext);
+  console.log(profileData);
   // HANDLE SCREEN RESIZE
   const handleResize = (e) => {
     if (window.innerWidth >= 1024) return setCurrentDevice("lg");
@@ -91,33 +92,9 @@ const Navbar = () => {
               />
             )}
         </Container>
-        {/* <Container><BreadCrumbContainer /></Container> */}
       </Section>
     </SectionWrapper>
   );
 };
 
 export default Navbar;
-
-// import React, { useState } from "react";
-// import { nav } from "@/data/Data";
-// import styled from "./header.module.css";
-// import Link from "next/link";
-// const Header = () => {
-//   const [navList, setNavList] = useState(false);
-
-//   return (
-//     <>
-//       <header className={styled.header}>
-//         <div className={`container flex`}>
-//           <div className={styled.logo}>
-//             <img src="./images/logo.png" alt="" />
-//           </div>
-
-//         </div>
-//       </header>
-//     </>
-//   );
-// };
-
-// export default Header;

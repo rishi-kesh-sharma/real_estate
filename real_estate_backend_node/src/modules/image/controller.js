@@ -29,7 +29,6 @@ const sendMultiImageUrl = async (req, res) => {
 };
 router.post(
   "/single",
-
   singleUploader(),
   // upload.single("image"),
 

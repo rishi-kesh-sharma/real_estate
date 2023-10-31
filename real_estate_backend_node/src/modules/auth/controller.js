@@ -95,33 +95,33 @@ const loginHandler = async (req, res) => {
         permissions,
         sessionId: uuidv4(),
         accessToken: token,
-        userInfo: {
-          name: "Rishikesh Sharma",
-          avatar:
-            "https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png",
-          userid: "00000001",
-          email: "wrongdirection72@gmail.com",
-          signature: "Be tolerant to diversity, tolerance is a virtue",
-          title: "interaction expert",
-          group: "Rentify",
-          tags: [],
-          notifyCount: 12,
-          unreadCount: 11,
-          country: "China",
-          access: "admin",
-          geographic: {
-            province: {
-              label: "Bagmati",
-              key: "330000",
-            },
-            city: {
-              label: "Kathmandu",
-              key: "330100",
-            },
-          },
-          address: "Kathmandu",
-          phone: "0752-268888888",
-        },
+        // userInfo: {
+        //   name: "Rishikesh Sharma",
+        //   avatar:
+        //     "https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png",
+        //   userid: "00000001",
+        //   email: "wrongdirection72@gmail.com",
+        //   signature: "Be tolerant to diversity, tolerance is a virtue",
+        //   title: "interaction expert",
+        //   group: "Rentify",
+        //   tags: [],
+        //   notifyCount: 12,
+        //   unreadCount: 11,
+        //   country: "China",
+        //   access: "admin",
+        //   geographic: {
+        //     province: {
+        //       label: "Bagmati",
+        //       key: "330000",
+        //     },
+        //     city: {
+        //       label: "Kathmandu",
+        //       key: "330100",
+        //     },
+        //   },
+        //   address: "Kathmandu",
+        //   phone: "0752-268888888",
+        // },
       };
 
       res.status(200).send(payload);
@@ -286,6 +286,10 @@ const getLoggedInUser = async (req, res) => {
   const { user } = req;
   res.status(200).json(user);
 };
+const logout = async (req, res) => {
+  const { user } = req;
+  res.status(200).json({ message: "user logged out" });
+};
 
 router.post(
   "/register",
@@ -303,5 +307,6 @@ router.post(
   checkUsernameHandler
 );
 router.get("/getloggedinuser", authenticateRequest, getLoggedInUser);
+router.get("/logout", authenticateRequest, logout);
 
 module.exports = router;

@@ -3,17 +3,38 @@ import ProfileAvatar from "./ProfileAvatar";
 import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
 import { logoutFunctionality } from ".";
+import Toast from "./Toast";
+import {
+  removeTokenFromLocalStorage,
+  removeUserFromLocalStorage,
+} from "@/utils/LocalStorage";
 
 const ProfileDropDown = ({ profileLinks, isAuthenticated, profile }) => {
-  const [cookie, setCookie, removeCookie] = useCookies(["token"]);
   const router = useRouter();
 
   const handleClick = (e) => {
     e.currentTarget.parentNode.lastChild.classList.toggle("hidden");
   };
   const handleLogout = async (e) => {
-    await logoutFunctionality(removeCookie, router);
+    try {
+      await logoutFunctionality(router);
+      Toast.fire({
+        icon: "success",
+        title: "Logged out successfully",
+      });
+      removeTokenFromLocalStorage(localStorage);
+      removeUserFromLocalStorage(localStorage);
+      router.reload("/");
+    } catch (err) {
+      Toast.fire({
+        icon: "error",
+        title: `Cannot Login: ${
+          err?.response?.data?.message || err?.response?.message
+        }`,
+      });
+    }
   };
+
   return (
     <div className="relative cursor-pointer">
       <div

@@ -10,9 +10,9 @@ export const getProfile = async (token) => {
   return response;
 };
 export const updateProfile = async (data) => {
-  const response = await axios.post(`${baseUrl}/user/update-profile`, data, {
+  const response = await axios.put(`${baseUrl}/users/update`, data, {
     headers: {
-      Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+      Authorization: `Bearer ${getTokenFromLocalStorage(localStorage)}`,
     },
   });
   return response;
@@ -21,7 +21,7 @@ export const updateProfile = async (data) => {
 export const updatePassword = async (data) => {
   const response = await axios.post(`${baseUrl}/user/update-password`, data, {
     headers: {
-      Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+      Authorization: `Bearer ${getTokenFromLocalStorage(localStorage)}`,
     },
   });
   return response;

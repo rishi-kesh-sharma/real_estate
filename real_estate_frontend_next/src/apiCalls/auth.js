@@ -10,18 +10,13 @@ export const registerUser = async (data) => {
   return response;
 };
 export const logoutUser = async () => {
-  console.log("in api logout");
   console.log(getTokenFromLocalStorage());
-  const token = `Bearer ${getTokenFromLocalStorage()}`;
+  const token = `Bearer ${getTokenFromLocalStorage(localStorage)}`;
 
-  const response = await axios.post(
-    `${baseUrl}/logout`,
-    {},
-    {
-      headers: {
-        Authorization: token,
-      },
-    }
-  );
+  const response = await axios.get(`${baseUrl}/auth/logout`, {
+    headers: {
+      Authorization: token,
+    },
+  });
   return response;
 };

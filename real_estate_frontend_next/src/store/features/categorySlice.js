@@ -34,7 +34,7 @@ export const getCatId = createAsyncThunk("getCatId", async (data, thunkApi) => {
     const res = await getCategoryFun(data);
     return res.data.data;
   } catch (err) {
-    console.log(err, "error")
+    console.log(err, "error");
     let error = err;
     if (!error.response) {
       throw err;
@@ -90,7 +90,7 @@ export const categorySlice = createSlice({
     });
     builder.addCase(getCatId.fulfilled, (state, action) => {
       state.loading = false;
-      state.catId = action.payload[0]._id;
+      state.catId = action.payload[0]?._id;
       state.error = null;
     });
     builder.addCase(getCatId.rejected, (state, action) => {

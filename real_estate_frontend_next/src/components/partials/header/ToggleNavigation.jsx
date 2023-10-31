@@ -9,6 +9,12 @@ import ProfileAvatar from "@/components/utils/ProfileAvatar";
 import ProfileToggleNavigation from "@/components/utils/ProfileToggleNavigation";
 import { profileLinks } from "@/data/Data";
 import AuthButton from "@/components/utils/AuthButton";
+import { logoutFunctionality } from "@/components/utils";
+import {
+  removeTokenFromLocalStorage,
+  removeUserFromLocalStorage,
+} from "@/utils/LocalStorage";
+import Toast from "@/components/utils/Toast";
 const ToggleNavigation = ({
   links,
   handleNavLinksClick,
@@ -18,9 +24,7 @@ const ToggleNavigation = ({
   isAuthenticated,
 }) => {
   const [openProfileLinks, setOpenProfileLinks] = useState(false);
-  const handleLogout = (e) => {
-    console.log("logout button clicked");
-  };
+
   const handleProfileAvatarClick = (e) => {
     console.log("avatar clicked");
     setOpenProfileLinks(!openProfileLinks);
@@ -71,19 +75,19 @@ const ToggleNavigation = ({
                 <li
                   key={item?.name}
                   onClick={handleNavLinksClick}
-                  className="border-b-[1px] w-full hover:bg-gray-100 border-b-gray-300 flex items-center px-[0.6rem] ">
+                  className="border-b-[1px] w-full cursor-pointer hover:bg-gray-100 border-b-gray-300 flex items-center px-[0.6rem] ">
                   {item.icon && item.icon}
                   {item.path ? (
                     <Link
                       href={item?.path}
-                      className="flex items-center p-2 text-base font-normal text-gray-600 rounded-lg hover:bg-gray-100 hover:text-black">
-                      <span className="flex-1 ml-3 whitespace-nowrap">
+                      className="flex items-center p-2 text-base font-normal text-gray-600 rounded-lg hover:bg-gray-100 hover:text-black cursor-pointer">
+                      <span className="flex-1 ml-3 whitespace-nowrap cursor-pointer">
                         {item.name}
                       </span>
                     </Link>
                   ) : (
-                    <div className="flex items-center p-2 text-base font-normal text-gray-600 rounded-lg hover:bg-gray-100 hover:text-black">
-                      <span className="flex-1 ml-3 whitespace-nowrap">
+                    <div className="flex items-center p-2 text-base font-normal text-gray-600 rounded-lg hover:bg-gray-100 hover:text-black cursor-pointer">
+                      <span className="flex-1 ml-3 whitespace-nowrap cursor-pointer">
                         {item.name}
                       </span>
                     </div>
