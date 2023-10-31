@@ -6,7 +6,7 @@ const ProfileAvatar = ({ profile }) => {
   return (
     <div className="flex items-center gap-[0.6rem] cursor-pointer ">
       <img
-        src={profile?.profile_image}
+        src={profile?.profile_image || person1.src}
         width={100}
         height={100}
         id="avatarButton"
@@ -16,7 +16,7 @@ const ProfileAvatar = ({ profile }) => {
         className="w-10 h-10 rounded-full cursor-pointer text-[4rem]"
         alt="User dropdown"
       />
-      <p className="text-md text-gray-600"> {profile?.name}</p>
+      <p className="text-md text-gray-600"> {profile?.firstName}</p>
     </div>
   );
 };

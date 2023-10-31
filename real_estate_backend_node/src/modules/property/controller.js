@@ -52,7 +52,6 @@ router.post(
   // authenticateRequest,
   // authorizeRequest,
   multiUploader(),
-
   handleValidation(validate),
   saveHandler
 );

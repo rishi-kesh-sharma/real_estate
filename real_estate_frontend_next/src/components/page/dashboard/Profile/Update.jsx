@@ -1,10 +1,7 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useContext, useState } from "react";
 import * as Yup from "yup";
-// import { register } from "@/apiCalls/auth";
-import { getSingleErrorMessage } from "@/utils/Errors";
-// import { setUserState } from "@/store/features/userSlice";
-// import { setUserState } from "@/store/features/profileSlice";
+
 import { useRouter } from "next/router";
 import ImageField from "@/components/utils/ImageField";
 import { updateProfile } from "@/apiCalls/profile";
@@ -12,6 +9,7 @@ import Container from "@/components/utils/Container";
 import { profileContext } from "@/pages/_app";
 import Toast from "@/components/utils/Toast";
 import Previews from "@/components/utils/DragNDropWPreview";
+import { setUserToLocalStorage } from "@/utils/LocalStorage";
 const styles = {
   label: "block text-gray-600 text-sm  pt-2 pb-1",
   field:
@@ -24,11 +22,11 @@ const styles = {
 const UpdateUser = () => {
   const router = useRouter();
   const signUpSchema = Yup.object().shape({
-    name: Yup.string().required("Name is Required"),
+    firstName: Yup.string().required("First Name is Required"),
+    lastName: Yup.string().required("Last Name is Required"),
     email: Yup.string().email().required("Email is Required"),
-    mobile: Yup.string().required("Mobile is Required"),
-    dob: Yup.date().required("Date Of Birth is Required"),
-    email: Yup.string().required("Email is Required"),
+    phoneNumber: Yup.string().required("Phone Number is Required"),
+    address: Yup.string().required("Address is Required"),
   });
 
   const profileData = useContext(profileContext);
@@ -41,13 +39,12 @@ const UpdateUser = () => {
   );
 
   const initialValues = {
-    name: profileData?.profile?.name,
+    firstName: profileData?.profile?.firstName,
+    lastName: profileData?.profile?.lastName,
     email: profileData?.profile?.email,
-    mobile: profileData.profile.profile.mobile,
-    gender: profileData?.profile?.gender,
-    dob: profileData?.profile?.dob,
-    about_me: profileData?.profile?.about_me,
-    profile_image: profileData?.profile?.profile_image,
+    phoneNumber: profileData?.profile?.phoneNumber,
+    roleAlias: profileData?.profile?.roleAlias,
+    address: profileData?.profile?.address,
   };
 
   const imageHandler = (e) => {
@@ -56,26 +53,25 @@ const UpdateUser = () => {
   };
 
   const handleSubmit = async (
-    { name, email, mobile, gender, dob, about_me, profile_image },
+    values,
     { setErrors, setSubmitting, isSubmitting }
   ) => {
     try {
       const res = await updateProfile({
-        name,
-        email,
-        mobile,
-        gender,
-        dob,
-        about_me,
-        profile_image,
+        _id: profileData.profile._id,
+        roleId: profileData.profile.roleId,
+        ...values,
       });
       Toast.fire({
         icon: "success",
         title: "Profile Updated successfully",
       });
+      setUserToLocalStorage(localStorage, {
+        ...profileData.profile,
+        ...values,
+      });
     } catch (err) {
-      const messages = getSingleErrorMessage(err.response.data.errors);
-      setErrors(messages);
+      console.log(err);
 
       Toast.fire({
         icon: "error",
@@ -94,14 +90,33 @@ const UpdateUser = () => {
             return (
               <Form className="flex flex-col gap-[1rem]">
                 <div>
-                  <label className={styles.label} htmlFor="name">
-                    Full Name
+                  <label className={styles.label} htmlFor="firstName">
+                    First Name
                   </label>
-                  <Field className={styles.field} id="name" name="name" />
+                  <Field
+                    className={styles.field}
+                    id="firstName"
+                    name="firstName"
+                  />
                   <ErrorMessage
                     component="a"
                     className={styles.errorMsg}
-                    name="name"
+                    name="firstName"
+                  />
+                </div>
+                <div>
+                  <label className={styles.label} htmlFor="lastName">
+                    Last Name
+                  </label>
+                  <Field
+                    className={styles.field}
+                    id="lastName"
+                    name="lastName"
+                  />
+                  <ErrorMessage
+                    component="a"
+                    className={styles.errorMsg}
+                    name="lastName"
                   />
                 </div>
 
@@ -118,62 +133,59 @@ const UpdateUser = () => {
                 </div>
 
                 <div>
-                  <label className={styles.label} htmlFor="mobile">
-                    Mobile
-                  </label>
-                  <Field className={styles.field} id="mobile" name="mobile" />
-                  <ErrorMessage
-                    component="a"
-                    className={styles.errorMsg}
-                    name="mobile"
-                  />
-                </div>
-                <div>
-                  <label className={styles.label} htmlFor="dob">
-                    Date Of Birth
+                  <label className={styles.label} htmlFor="phoneNumber">
+                    phoneNumber
                   </label>
                   <Field
-                    type="date"
                     className={styles.field}
-                    id="dob"
-                    name="dob"
+                    id="phoneNumber"
+                    name="phoneNumber"
                   />
                   <ErrorMessage
                     component="a"
                     className={styles.errorMsg}
-                    name="dob"
-                  />
-                </div>
-                <div>
-                  <label className={styles.label} htmlFor="about_me">
-                    About Me
-                  </label>
-                  <Field
-                    as="textarea"
-                    className={styles.field}
-                    id="about_me"
-                    name="about_me"
-                    rows={5}
-                  />
-                  <ErrorMessage
-                    component="a"
-                    className={styles.errorMsg}
-                    name="about_me"
+                    name="phoneNumber"
                   />
                 </div>
 
                 <div>
+                  <label className={styles.label} htmlFor="roleAlias">
+                    Role
+                  </label>
+                  <Field
+                    className={styles.field}
+                    id="roleAlias"
+                    name="roleAlias"
+                  />
+                  <ErrorMessage
+                    component="a"
+                    className={styles.errorMsg}
+                    name="roleAlias"
+                  />
+                </div>
+                <div>
+                  <label className={styles.label} htmlFor="address">
+                    Address
+                  </label>
+                  <Field className={styles.field} id="address" name="address" />
+                  <ErrorMessage
+                    component="a"
+                    className={styles.errorMsg}
+                    name="address"
+                  />
+                </div>
+                {/* <div>
                   <label className={styles.label}>
                     Upload Your profile image
                   </label>
-                  {/* <ImageField
+                  <ImageField
                     imageHandler={imageHandler}
                     checkFile={checkFile}
                     selectedFile={selectedFile}
                     className={styles.field}
-                  /> */}
+                  />
                   <Previews />
-                </div>
+                </div> */}
                 <div className="mt-8 flex justify-end max-w-[600px] cursor-pointer">
                   {isSubmitting ? (
                     <div className="flex items-center justify-center">

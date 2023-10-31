@@ -13,8 +13,8 @@ const processRequest = async (req, res, next) => {
 const init = async (app) => {
   app.use(
     "/api/categories",
-    authenticateRequest,
-    authorizeRequest,
+    // authenticateRequest,
+    // authorizeRequest,
     processRequest,
     routes
   );

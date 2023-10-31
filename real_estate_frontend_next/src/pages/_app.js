@@ -12,18 +12,18 @@ import NextApp from "next/app.js";
 import { CookiesProvider } from "react-cookie";
 import { parseCookies } from "@/utils/cookies.js";
 import { getProfile } from "@/apiCalls/profile.js";
+import { getUserFromLocalStorage } from "@/utils/LocalStorage.js";
 
 // APP CONTEXT FOR BREADCRUMBS
 export const appContext = createContext(null);
 export const profileContext = createContext(null);
-function App({ Component, pageProps, data }) {
-  const getProfileData = async () => {
-    const res = await getProfile(localStorage.getItem("token"));
-  };
-
+function App({ Component, pageProps }) {
   const router = useRouter();
   const [breadcrumbs, setBreadcrumbs] = useState();
-  const [profileData, setProfileData] = useState(data);
+  const [profileData, setProfileData] = useState({
+    isAuthenticated: false,
+    profile: {},
+  });
 
   // USEEFFECT FOR NPROGRESS
   useEffect(() => {
@@ -62,7 +62,8 @@ function App({ Component, pageProps, data }) {
       };
     });
     setBreadcrumbs(breadcrumbs);
-    setProfileData(data);
+    const profile = JSON.parse(getUserFromLocalStorage(localStorage));
+    setProfileData({ isAuthenticated: profile && true, profile: profile });
   }, [router.asPath]);
 
   return (

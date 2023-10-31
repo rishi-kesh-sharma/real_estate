@@ -1,63 +1,61 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { register } from "@/store/features/authSlice";
+import { register, selectAuthState } from "@/store/features/authSlice";
 import { getSingleErrorMessage } from "@/utils/Errors";
 import { setUserState } from "@/store/features/userSlice";
 import { useRouter } from "next/router";
 import { setAuthState } from "@/store/features/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Toast from "@/components/utils/Toast";
 import { baseUrl } from "@/apiCalls/constants";
 import axios from "axios";
+import { useState } from "react";
 
 const SignUpForm = ({ styles }) => {
+  const [usernameMessage, setUsernameMessage] = useState({
+    type: "",
+    message: "",
+  });
   const router = useRouter();
   const dispatch = useDispatch();
+  const authState = useSelector(selectAuthState);
+  console.log(authState);
 
   // SIGN UP SCHEMA
   const signUpSchema = Yup.object().shape({
-    name: Yup.string().required("Name is Required"),
-    username: Yup.string().required("username is Required"),
+    firstName: Yup.string().required("First Name is Required"),
+    lastName: Yup.string().required("First Name is Required"),
+    username: Yup.string().required("username is Required").min(3, "Too Short"),
+    phoneNumber: Yup.string().required("Phone Number is Required"),
     email: Yup.string().email().required("Email is Required"),
     password: Yup.string()
       .required("Password is Required")
       .min(3, "Too Short!"),
-    password_confirmation: Yup.string()
+    confirm: Yup.string()
       .required("Confirm Password is Required")
       .min(3, "Too Short!"),
+    address: Yup.string().required("Address is Required"),
   });
 
   // REGISTER SUBMIT HANDLER
   const handleSubmit = async (values, { setErrors }) => {
     const resultAction = await dispatch(register(values));
-
     // EXECUTES IF THE LOGIN IS SUCCESSFUL
     if (register.fulfilled.match(resultAction)) {
-      const user = resultAction.payload;
       Toast.fire({
         icon: "success",
-        title: "Signed in successfully",
+        title: "Signed up successfully",
       });
-
       // REDIRECTING TO HOME
-      router.push("/");
+      // router.push("/");
 
       // EXECUTES IF LOGIN FAILS
     } else {
-      // EXECUTES IF THE RESULT ACTION HAS NO PAYLOAD
-      if (resultAction.payload) {
-        const messages = getSingleErrorMessage(
-          resultAction.payload.data.errors
-        );
-        setErrors(messages);
-      }
-      // EXECUTES IF RESULT ACTION HAS NO PAYLOAD
-      else {
-        Toast.fire({
-          icon: "error",
-          title: `Cannot Register: ${resultAction.error.message}`,
-        });
-      }
+      console.log(resultAction);
+      Toast.fire({
+        icon: "error",
+        title: `Cannot Register: ${resultAction.payload.message}`,
+      });
     }
   };
 
@@ -66,23 +64,35 @@ const SignUpForm = ({ styles }) => {
       <Formik
         validationSchema={signUpSchema}
         initialValues={{
-          name: "",
+          firstName: "",
+          lastName: "",
+          username: "",
           email: "",
           password: "",
-          password_confirmation: "",
+          confirm: "",
+          address: "",
         }}
         onSubmit={handleSubmit}>
         {() => {
           return (
             <Form>
-              <label className={styles.label} htmlFor="Name">
-                Full Name
+              <label className={styles.label} htmlFor="firstName">
+                First Name
               </label>
-              <Field className={styles.field} id="name" name="name" />
+              <Field className={styles.field} id="firstName" name="firstName" />
               <ErrorMessage
                 component="a"
                 className={styles.errorMsg}
-                name="name"
+                name="firstName"
+              />
+              <label className={styles.label} htmlFor="lastName">
+                Last Name
+              </label>
+              <Field className={styles.field} id="lastName" name="lastName" />
+              <ErrorMessage
+                component="a"
+                className={styles.errorMsg}
+                name="lastName"
               />
               <label className={styles.label} htmlFor="name">
                 Username
@@ -90,25 +100,56 @@ const SignUpForm = ({ styles }) => {
               <Field
                 onInput={async (e) => {
                   const username = e.target.value;
-                  const res = await axios.post(
-                    `${baseUrl}/auth/check-username`,
-                    {
-                      username,
-                    }
-                  );
-                  console.log(res);
+                  try {
+                    const res = await axios.post(
+                      `${baseUrl}/auth/check-username`,
+                      {
+                        username,
+                      }
+                    );
+                    setUsernameMessage({
+                      type: "available",
+                      message: res.data.message,
+                    });
+                  } catch (err) {
+                    setUsernameMessage({
+                      type: "error",
+                      message: err.response.data.message,
+                    });
+                  }
                 }}
                 className={styles.field}
                 id="username"
                 name="username"
               />
 
-              <ErrorMessage
+              <div
+                className={`text-xs ${
+                  usernameMessage.type == "error"
+                    ? "text-red-400"
+                    : "text-green-400"
+                }`}>
+                {usernameMessage.message}
+              </div>
+              {/* <ErrorMessage
                 component="a"
                 className={styles.errorMsg}
                 name="username"
+              /> */}
+              {/* <button className="bg-green-600 p-1  ">Check</button> */}
+              <label className={styles.label} htmlFor="phoneNumber">
+                Phone Number
+              </label>
+              <Field
+                className={styles.field}
+                id="phoneNumber"
+                name="phoneNumber"
               />
-              <button className="bg-green-600 p-1  ">Check</button>
+              <ErrorMessage
+                component="a"
+                className={styles.errorMsg}
+                name="phoneNumber"
+              />
               <label className={styles.label} htmlFor="Email">
                 Email
               </label>
@@ -127,18 +168,23 @@ const SignUpForm = ({ styles }) => {
                 className={styles.errorMsg}
                 name="password"
               />
-              <label className={styles.label} htmlFor="password_confirmation">
+              <label className={styles.label} htmlFor="confirm">
                 Confirm password
               </label>
-              <Field
-                className={styles.field}
-                id="password_confirmation"
-                name="password_confirmation"
-              />
+              <Field className={styles.field} id="confirm" name="confirm" />
               <ErrorMessage
                 component="a"
                 className={styles.errorMsg}
-                name="password_confirmation"
+                name="confirm"
+              />
+              <label className={styles.label} htmlFor="address">
+                Address
+              </label>
+              <Field className={styles.field} id="address" name="address" />
+              <ErrorMessage
+                component="a"
+                className={styles.errorMsg}
+                name="address"
               />
               <div className="mt-8">
                 <button type="submit" className={styles.button}>

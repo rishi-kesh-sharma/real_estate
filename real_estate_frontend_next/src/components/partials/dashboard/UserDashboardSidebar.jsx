@@ -93,7 +93,7 @@ const UserDashboardSidebar = (
             } p-3 pl-14`}>
             Profile Information
           </Link>
-          <Link
+          {/* <Link
             className="p-3 pl-14 hover:bg-green-50 hover:text-primary-green"
             href="/">
             Manage Addresses
@@ -102,7 +102,7 @@ const UserDashboardSidebar = (
             className="p-3 pl-14 hover:bg-green-50 hover:text-primary-green"
             href="/">
             PAN Card Information
-          </Link>
+          </Link> */}
         </div>
 
         <div className="flex items-center gap-5 px-4 py-4">
@@ -114,7 +114,7 @@ const UserDashboardSidebar = (
           </p>
         </div>
         <div className="flex flex-col pb-3 border-b text-sm">
-          <Link
+          {/* <Link
             className="p-3 pl-14 hover:bg-green-50 hover:text-primary-green"
             href="/">
             My Reviews & Ratings
@@ -123,7 +123,7 @@ const UserDashboardSidebar = (
             className="p-3 pl-14 hover:bg-green-50 hover:text-primary-green"
             href="/">
             All Notifications
-          </Link>
+          </Link> */}
           <Link
             href="/dashboard/favourites"
             className={`${

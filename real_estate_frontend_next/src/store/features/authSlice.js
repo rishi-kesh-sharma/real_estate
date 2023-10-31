@@ -11,25 +11,25 @@ const initialState = {
 export const login = createAsyncThunk("login", async (data, thunkApi) => {
   try {
     const res = await loginUser(data);
-    return res.data.data;
+    return res.data;
   } catch (err) {
     let error = err;
     if (!error.response) {
       throw err;
     }
-    return thunkApi.rejectWithValue(error.response);
+    return thunkApi.rejectWithValue(error.response.data);
   }
 });
-export const register = createAsyncThunk("register", async (data) => {
+export const register = createAsyncThunk("register", async (data, thunkApi) => {
   try {
     const res = await registerUser(data);
-    return res.data.user;
+    return res.data;
   } catch (err) {
     let error = err;
     if (!error.response) {
       throw err;
     }
-    return rejectWithValue(error.response);
+    return thunkApi.rejectWithValue(error.response.data);
   }
 });
 
@@ -49,7 +49,7 @@ export const authSlice = createSlice({
     builder.addCase(login.rejected, (state, action) => {
       if (action.payload) {
         state.error = {
-          message: action.payload.data.message,
+          message: action.payload.message,
           status: action.payload.status,
         };
       } else {
@@ -73,7 +73,7 @@ export const authSlice = createSlice({
     builder.addCase(register.rejected, (state, action) => {
       if (action.payload) {
         state.error = {
-          message: action.payload.data.message,
+          message: action.payload.message,
           status: action.payload.status,
         };
       } else {
