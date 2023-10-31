@@ -6,7 +6,6 @@ const schema = new mongoose.Schema(
   {
     name: { type: String, required: true, unique: true },
     alias: { type: String, required: true, unique: true },
-    relatedPurpose: [{ type: String, required: true, enums: ["rent", "sale"] }],
     relatedCategories: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -79,6 +78,7 @@ schema.post("save", (error, doc, next) => {
     // if error.message contains the substring 'duplicate key error' then it's a duplicate entry
     if (error.message.includes("duplicate key error")) {
       const keyName = Object.keys(error.keyValue)[0];
+      // eslint-disable-next-line no-undef
       const errorMessage = `${keyMapping[keyName]} already exists`;
       next(new MongoError(errorMessage));
     } else next(new MongoError(error.message));

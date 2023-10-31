@@ -31,8 +31,8 @@ router.post(
   "/create",
   authenticateRequest,
   authorizeRequest,
-  handleValidation(validate),
   multiUploader(),
+  handleValidation(validate),
   saveHandler
 );
 router.put(

@@ -1,21 +1,19 @@
-const { ObjectId } = require("mongoose").Types;
+/* eslint-disable no-undef */
 const { name } = require("./model");
 
 const getQuery = (payload) => {
   const subQueries = [{}];
-  let categoryQuery = {};
-  if (payload.categoryId) {
-    categoryQuery = { relatedCategories: new ObjectId(payload.categoryId) };
-    subQueries.push(categoryQuery);
-  }
-  let subCategoryQuery = {};
-  if (payload.subCategoryId) {
-    subCategoryQuery = {
-      relatedSubCategories: new ObjectId(payload.subCategoryId),
-    };
-    subQueries.push(subCategoryQuery);
+  // filter based on category
+  if (payload.relatedCategories) {
+    queries.push({ relatedCategories: payload.relatedCategories });
   }
 
+  // filter based on sub category
+  if (payload.relatedSubCategories) {
+    queries.push({
+      relatedSubCategories: payload.relatedSubCategories,
+    });
+  }
   let nameQuery = [];
   if (payload.name) {
     nameQuery = {
