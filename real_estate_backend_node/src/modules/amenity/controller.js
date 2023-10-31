@@ -9,7 +9,7 @@ const {
   deleteHandler,
 } = require("../../core/controller");
 const { validate } = require("./request");
-const { handleValidation } = require("../../common/middlewares");
+const { handleValidation, multiUploader } = require("../../common/middlewares");
 const { searchOne } = require("../../core/repository");
 
 const router = express.Router();
@@ -44,7 +44,12 @@ const checkHandler = async (req, res) => {
     .send({ status: "error", message: "Amenity not found" });
 };
 router.get("/detail", getByIdHandler);
-router.post("/create", handleValidation(validate), saveHandler);
+router.post(
+  "/create",
+  multiUploader(),
+  handleValidation(validate),
+  saveHandler
+);
 router.put("/update", handleValidation(validate), updateHandler);
 router.post("/search", searchHandler);
 router.post("/count", countHandler);

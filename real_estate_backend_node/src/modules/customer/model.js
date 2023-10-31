@@ -40,11 +40,13 @@ customerSchema.index({ email: 1 });
 // index for phone number
 customerSchema.index({ phone: 1 });
 
+// eslint-disable-next-line no-undef
 schema.post("save", (error, doc, next) => {
   if (error.name === "MongoError" && error.code === 11000) {
     // if error.message contains the substring 'duplicate key error' then it's a duplicate entry
     if (error.message.includes("duplicate key error")) {
       const keyName = Object.keys(error.keyValue)[0];
+      // eslint-disable-next-line no-undef
       const errorMessage = `${keyMapping[keyName]} already exists`;
       next(new MongoError(errorMessage));
     } else next(new MongoError(error.message));
@@ -56,8 +58,6 @@ schema.post("save", (error, doc, next) => {
 const Customer = mongoose.model("Customer", customerSchema);
 
 module.exports = Customer;
-
-const Product = mongoose.model("Product", schema);
 
 // const ModelName = "Product";
 // // reference model

@@ -1,6 +1,14 @@
+// eslint-disable-next-line no-unused-vars
 const { default: mongoose } = require("mongoose");
 const { NotFound } = require("../common/errors");
-const { getById, search, count, save, update, deleteById } = require("./repository");
+const {
+  getById,
+  search,
+  count,
+  save,
+  update,
+  deleteById,
+} = require("./repository");
 
 const getByIdHandler = async (req, res, next) => {
   try {
@@ -22,7 +30,13 @@ const searchHandler = async (req, res, next) => {
     const ModelName = req.modelName;
     const { body } = req;
     req.log.info({ body }, `search ${ModelName}`);
-    const data = await search(body, req.searchQuery, ModelName, limit, populate);
+    const data = await search(
+      body,
+      req.searchQuery,
+      ModelName,
+      limit,
+      populate
+    );
     return res.status(200).send({ data, total: data.length });
   } catch (error) {
     return next(error, req, res);
@@ -46,7 +60,6 @@ const saveHandler = async (req, res, next) => {
   try {
     const ModelName = req.modelName;
     const { body } = req;
-    console.log(body, "this is body of the request");
     let images = [];
     if (req.files) {
       // If there are files in req.files, add them to the images array
@@ -78,9 +91,10 @@ const updateHandler = async (req, res, next) => {
     const ModelName = req.modelName;
     const { body } = req;
 
-    console.log(body._id, "this is update id");
-    const id = await update(body, ModelName);
-    return res.status(200).send({ success: true, message: `${ModelName} updated` });
+    await update(body, ModelName);
+    return res
+      .status(200)
+      .send({ success: true, message: `${ModelName} updated` });
   } catch (error) {
     return next(error, req, res);
   }
@@ -91,7 +105,9 @@ const deleteHandler = async (req, res, next) => {
     const ModelName = req.modelName;
     const { id } = req.query;
     await deleteById(id, ModelName);
-    return res.status(200).send({ success: true, message: `${ModelName} deleted` });
+    return res
+      .status(200)
+      .send({ success: true, message: `${ModelName} deleted` });
   } catch (error) {
     return next(error, req, res);
   }

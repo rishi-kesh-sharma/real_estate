@@ -15,11 +15,34 @@ const schema = Joi.object().keys({
   images: Joi.array(),
 });
 
-const validate = (data, user) => {
-  const result = schema.validate(data);
-  result.value = {
-    ...data,
-  };
+const validate = (data) => {
+  const tempData = { ...data };
+
+  if (typeof tempData.meta_tag === "string") {
+    try {
+      tempData.meta_tag = JSON.parse(tempData.meta_tag);
+    } catch (error) {
+      // Handle any parsing errors here
+      throw new Error("Error parsing 'meta_tag' property as JSON");
+    }
+  }
+  if (typeof tempData.tags === "string") {
+    try {
+      tempData.tags = JSON.parse(tempData.tags);
+    } catch (error) {
+      // Handle any parsing errors here
+      throw new Error("Error parsing 'tags' property as JSON");
+    }
+  }
+  if (typeof tempData.keywords === "string") {
+    try {
+      tempData.keywords = JSON.parse(tempData.keywords);
+    } catch (error) {
+      // Handle any parsing errors here
+      throw new Error("Error parsing 'keywords' property as JSON");
+    }
+  }
+  const result = schema.validate(tempData);
   return result;
 };
 

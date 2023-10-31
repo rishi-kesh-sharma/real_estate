@@ -46,8 +46,8 @@ const checkHandler = async (req, res) => {
 router.get("/detail", getByIdHandler);
 router.post(
   "/create",
-  handleValidation(validate),
   multiUploader(),
+  handleValidation(validate),
   saveHandler
 );
 router.put("/update", handleValidation(validate), updateHandler);

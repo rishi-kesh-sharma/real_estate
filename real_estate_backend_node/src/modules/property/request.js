@@ -47,13 +47,7 @@ const schema = Joi.object().keys({
 const validate = (data) => {
   const tempData = { ...data };
 
-  console.log(
-    tempData,
-    "this is tempData bvhgdvxh sjd cjk sjdc bjhbshjdc jhj jdhbhjdcjd cjcd"
-  );
-
   if (typeof tempData.location === "string") {
-    console.log(typeof tempData.location, "this is type of location")
     try {
       tempData.location = JSON.parse(tempData.location);
     } catch (error) {
@@ -86,9 +80,6 @@ const validate = (data) => {
     }
   }
 
-
-  
-  console.log(tempData.highlights, tempData.amenities);
   const result = schema.validate(tempData);
 
   // const temp = { ...data };

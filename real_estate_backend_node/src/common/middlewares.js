@@ -2,7 +2,7 @@ const { ObjectId } = require("mongoose").Types;
 const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
 const multer = require("multer");
-const { GeneralError } = require("./errors");
+const { GeneralError, BadRequest } = require("./errors");
 const { searchOne } = require("../core/repository");
 
 const handleError = async (err, req, res, next) => {
@@ -87,9 +87,11 @@ const authenticateRequest = async (req, res, next) => {
 // authorize request
 const authorizeRequest = async (req, res, next) => {
   const { user } = req;
-  console.log(req.user);
+  console.log(req.user, "this is consoled user");
   if (user) {
     const { username, roleId } = user;
+    console.log(req._parsedUrl, "this is request")
+    console.log(req._parsedUrl.pathname, "this is consoled path name for trying to get access");
     const permission = await searchOne(
       {
         roleId: new ObjectId(roleId),

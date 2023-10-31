@@ -30,27 +30,11 @@ const countHandler = async (req, res, next) => {
   return baseCountHandler(req, res, next);
 };
 
-// const sellProperty = async (req, res) => {
-//   const { isSold, id } = req.body;
-//   const selectProperty= await Property.findById(id);
-
-//   if(selectProperty.isSold){
-//     res.stat
-//   }
-//   try {
-//     Property.isSold = isSold;
-//     await Property.save();
-//     res.status(200).json({ success: true, message: "property updated" });
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// };
-
 router.get("/detail", getByIdHandler);
 router.post(
   "/create",
-  // authenticateRequest,
-  // authorizeRequest,
+  authenticateRequest,
+  authorizeRequest,
   multiUploader(),
 
   handleValidation(validate),
@@ -66,10 +50,5 @@ router.put(
 router.post("/search", searchHandler);
 router.post("/count", countHandler);
 router.delete("/delete", authenticateRequest, authorizeRequest, deleteHandler);
-// router.patch(
-//   "/sellproperty",
-//   authenticateRequest,
-//   authorizeRequest,
-//   sellProperty
-// );
+router.patch("/sellproperty", updateHandler);
 module.exports = router;

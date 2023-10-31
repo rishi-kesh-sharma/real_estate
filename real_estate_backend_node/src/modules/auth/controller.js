@@ -2,7 +2,10 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
 const { ObjectId } = require("mongoose").Types;
-const { handleValidation , authenticateRequest } = require("../../common/middlewares");
+const {
+  handleValidation,
+  authenticateRequest,
+} = require("../../common/middlewares");
 const {
   sendPasswordResetEmail,
   sendPasswordResetSuccessfulEmail,
@@ -17,6 +20,7 @@ const {
   changePassword,
 } = require("./service");
 const { sendAccountCreatedEmail } = require("../../email/sendgrid-service");
+
 const router = express.Router();
 const ModelName = "User";
 const createUserHandler = async (req, res, next) => {
@@ -59,6 +63,7 @@ const createUserHandler = async (req, res, next) => {
   }
 };
 
+// eslint-disable-next-line consistent-return
 const loginHandler = async (req, res) => {
   if (req.body.username && req.body.password) {
     const user = await checkUser(req.body.username, req.body.password);
@@ -120,6 +125,7 @@ const loginHandler = async (req, res) => {
       };
 
       res.status(200).send(payload);
+      // eslint-disable-next-line consistent-return
       return;
     }
   }
