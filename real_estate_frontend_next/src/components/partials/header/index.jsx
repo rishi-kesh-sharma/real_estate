@@ -11,10 +11,8 @@ import LeftNavLinks from "./LeftNavLinks";
 import ToggleNavigation from "./ToggleNavigation";
 import RightNavLinks from "./RightNavLinks";
 import SectionWrapper from "@/components/utils/SectionWrapper";
-import BreadCrumbContainer from "@/components/utils/BreadCrumbContainer";
 import Link from "next/link";
 import { profileContext } from "@/pages/_app";
-import ProfileAvatar from "@/components/utils/ProfileAvatar";
 const Navbar = () => {
   // TOGGLE SIDEBAR
   const [show, setShow] = useState(false);
@@ -29,7 +27,7 @@ const Navbar = () => {
       return setCurrentDevice("md");
   };
 
-  // HANDLE NAVLINKS CLICK
+  // HANDLE NAV LINKS CLICK
   const handleNavLinksClick = (e) => {
     setShow(false);
   };
@@ -39,7 +37,7 @@ const Navbar = () => {
     setShow(!show);
   };
 
-  // USEEFFECT
+  // USE EFFECT
   useEffect(() => {
     window.addEventListener("click", (e) => {
       console.log(e.target);

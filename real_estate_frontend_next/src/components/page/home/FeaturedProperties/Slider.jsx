@@ -4,6 +4,7 @@ import React from "react";
 import FeaturedPropertyCard from "./FeaturedPropertyCard";
 
 const Slider = ({ properties }) => {
+  console.log(properties);
   const list = properties?.map((item) => ({
     id: item?._id,
     name: item?.name,

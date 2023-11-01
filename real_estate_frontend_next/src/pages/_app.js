@@ -64,7 +64,7 @@ function App({ Component, pageProps }) {
     setBreadcrumbs(breadcrumbs);
     const profile = JSON.parse(getUserFromLocalStorage(localStorage));
     setProfileData({ isAuthenticated: profile && true, profile: profile });
-  }, [router.asPath]);
+  }, [router.asPath, router.query]);
 
   return (
     <CookiesProvider>

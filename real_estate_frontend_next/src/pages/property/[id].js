@@ -8,11 +8,20 @@ import NormalLayout from "@/components/layouts/NormalLayout";
 import { ChakraProvider } from "@chakra-ui/react";
 import { list } from "@/data/Data";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getPropertyDetail } from "@/store/features/propertySlice";
 
-const PropertyDetails = (property) => {
+const PropertyDetails = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const { id } = router.query;
-  property = list.find((item) => id == item.id);
+  useEffect(() => {
+    console.log(id);
+    dispatch(getPropertyDetail(id));
+  }, []);
+  const property = useSelector((state) => state.property.detail);
+  console.log(property);
   return (
     <>
       <Head>
@@ -32,13 +41,4 @@ const PropertyDetails = (property) => {
   );
 };
 
-// export async function getServerSideProps({ params: { id } }) {
-//   const data = await fetchApi(`${baseUrl}/properties/detail?externalID=${id}`);
-//   console.log(data);
-//   return {
-//     props: {
-//       propertyDetails: data,
-//     },
-//   };
-// }
 export default PropertyDetails;

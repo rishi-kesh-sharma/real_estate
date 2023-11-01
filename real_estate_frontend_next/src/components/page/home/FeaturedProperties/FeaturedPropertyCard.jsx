@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "./index.module.css";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import Image from "next/image";
@@ -7,13 +7,27 @@ import CardImage from "@/components/utils/CardImage";
 import CardContent from "@/components/utils/CardContent";
 import Link from "next/link";
 import { city1 } from "public/assets/images/cities";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserFromLocalStorage } from "@/utils/LocalStorage";
+import { addFavorite, getFavorites } from "@/store/features/favoriteSlice";
 
 const FeaturedPropertyCard = ({ featured }) => {
-  const { image, purpose, location, name, price, type } = featured;
-  const [isLiked, setIsLiked] = useState(false);
+  const dispatch = useDispatch();
+  const { image, purpose, location, name, price, type, id } = featured;
+  const user = JSON.parse(getUserFromLocalStorage(localStorage));
+  const favorites = useSelector((state) => state.favorite.favorites);
+  const isLiked = favorites?.find((item) => {
+    return item.property._id == id;
+  });
+  console.log(isLiked && "hello");
   const handleLikeClick = (e) => {
-    setIsLiked(!isLiked);
+    dispatch(addFavorite({ addedBy: user._id, property: id }));
   };
+
+  useEffect(() => {
+    const user = JSON.parse(getUserFromLocalStorage(localStorage));
+    dispatch(getFavorites({ addedBy: user?._id, populate: "property" }));
+  }, [dispatch]);
 
   return (
     <Card className="w-[100%] rounded-lg shadow-lg bg-white items-start p-[0.4rem]">
@@ -30,8 +44,7 @@ const FeaturedPropertyCard = ({ featured }) => {
             style={{
               background: purpose === "For Sale" ? "#25b5791a" : "#ff98001a",
               color: purpose === "For Sale" ? "#25b579" : "#ff9800",
-            }}
-          >
+            }}>
             {purpose}
           </span>
           {isLiked ? (

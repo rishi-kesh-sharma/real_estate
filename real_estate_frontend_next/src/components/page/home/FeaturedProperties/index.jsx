@@ -13,19 +13,16 @@ import { getFeaturedProperties } from "@/store/features/propertySlice";
 
 const FeaturedProperties = () => {
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getFeaturedProperties());
   }, [dispatch]);
-
   const featuredProperties = useSelector(
     (state) => state.property.featuredProperties
   );
 
   return (
     <Section
-      className={`${styled.recent} ${styled.padding} mt-[3rem] bg-gray-50 py-[2rem] `}
-    >
+      className={`${styled.recent} ${styled.padding} mt-[3rem] bg-gray-50 py-[2rem] `}>
       <Container>
         <Heading
           title="Featured Properties"

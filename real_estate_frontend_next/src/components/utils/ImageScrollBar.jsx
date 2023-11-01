@@ -42,32 +42,39 @@ export default function ImageSrollbar({ data }) {
       RightArrow={RightArrow}
       style={{ overflow: "hidden" }}>
       {data.map((item, index) => (
-        // <Box
-        //   key={item?.id}
-        //   width="400px"
-        //   itemId={item.id}
-        //   overflow="hidden"
-        //   p="1">
+        <Box
+          key={item?.id}
+          width="400px"
+          height={"300px"}
+          itemId={item.id}
+          overflow="hidden"
+          p="1">
+          {/* <Image
+            placeholder="blur"
+            blurDataURL={item.url}
+            src={item.url}
+            width={200}
+            height={100}
+            sizes="(max-width: 500px) 100px, (max-width: 1023px) 400px, 1000px"
+          /> */}
+          <img
+            src={`http://localhost:5000/${item}`}
+            alt="image"
+            height={100}
+            className="w-full"
+          />
+        </Box>
+        // <Box key={index} width="400px" itemId={item.id} overflow="hidden" p="1">
         //   <Image
+        //     src={`http://localhost:5000/${item}`}
         //     placeholder="blur"
-        //     blurDataURL={item.url}
-        //     src={item.url}
+        //     blurDataURL={`http://localhost:5000/${item}`}
+        //     // src={item.url}
         //     width={200}
         //     height={100}
         //     sizes="(max-width: 500px) 100px, (max-width: 1023px) 400px, 1000px"
         //   />
         // </Box>
-        <Box key={index} width="400px" itemId={item.id} overflow="hidden" p="1">
-          <Image
-            src={item}
-            // placeholder="blur"
-            // blurDataURL={item.url}
-            // src={item.url}
-            // width={200}
-            // height={100}
-            // sizes="(max-width: 500px) 100px, (max-width: 1023px) 400px, 1000px"
-          />
-        </Box>
       ))}
     </ScrollMenu>
   );
