@@ -7,19 +7,23 @@ import CardImage from "@/components/utils/CardImage";
 import CardContent from "@/components/utils/CardContent";
 import Link from "next/link";
 import { city1 } from "public/assets/images/cities";
+import { imageUrl } from "@/apiCalls/constants";
 
 const FeaturedPropertyCard = ({ featured }) => {
-  const { image, purpose, location, name, price, type } = featured;
+  console.log(featured, "this is featured property");
+  const { purpose,image, images, name, location, price, type } = featured;
   const [isLiked, setIsLiked] = useState(false);
   const handleLikeClick = (e) => {
     setIsLiked(!isLiked);
   };
 
+  console.log(featured, "this si single property");
+
   return (
-    <Card className="w-[100%] rounded-lg shadow-lg bg-white items-start p-[0.4rem]">
+    <Card className="w-[100%] group rounded-lg shadow-lg bg-white items-start p-[0.4rem]">
       <Link href={`property/${featured.id}`} className="w-[100%]">
-        <CardImage className="rounded-lg sm:h-[200px] xs:h-[180px] lg:h-[200px] w-[100%]">
-          <Image src={city1 || image} className="rounded-lg" alt="" />
+        <CardImage className="rounded-lg sm:h-[200px] xs:h-[180px] lg:h-[200px] w-[100%] overflow-hidden  ">
+          <img src={image} className="rounded-lg transition-all duration-500 transform scale-100 group-hover:scale-110 " alt="" />
         </CardImage>
       </Link>
 
@@ -34,26 +38,18 @@ const FeaturedPropertyCard = ({ featured }) => {
           >
             {purpose}
           </span>
-          {isLiked ? (
-            <FcLike onClick={handleLikeClick} />
-          ) : (
-            <FcLikePlaceholder onClick={handleLikeClick} />
-          )}
+          {isLiked ? <FcLike onClick={handleLikeClick} /> : <FcLikePlaceholder onClick={handleLikeClick} />}
         </div>
         <h4 className="text-sm">{name}</h4>
         <p className="text-xs text-gray-400">{location}</p>
         <div className="flex flex-col gap-[0.1rem] xs:flex-row xs:justify-between">
           <div className="flex items-center">
-            <p className="py-[0.1rem] text-center font-semibold text-sm">
-              {price}
-            </p>
+            <p className="py-[0.1rem] text-center font-semibold text-sm">{price}</p>
             <p htmlFor="" className="text-center text-gray-400 text-xs">
               /sqft
             </p>
           </div>
-          <span className="text-sm text-gray-400">
-            {type?.slice(0, 1)?.toUpperCase() + type?.slice(1, type?.length)}
-          </span>
+          <span className="text-sm text-gray-400">{type?.slice(0, 1)?.toUpperCase() + type?.slice(1, type?.length)}</span>
         </div>
       </CardContent>
     </Card>

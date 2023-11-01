@@ -6,6 +6,7 @@ import CustomSlider from "../../../utils/CustomSlider";
 import Container from "@/components/utils/Container";
 
 const Slider = ({ categories }) => {
+  console.log(categories)
   var settings = {
     dots: true,
     infinite: true,

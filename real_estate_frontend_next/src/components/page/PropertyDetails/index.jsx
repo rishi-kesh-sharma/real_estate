@@ -6,31 +6,10 @@ import { GoVerified } from "react-icons/go";
 import millify from "millify";
 
 import ImageScrollbar from "../../utils/ImageScrollBar.jsx";
-const PropertyDetails = ({
-  property: {
-    price,
-    rentFrequency,
-    rooms,
-    name,
-    baths,
-    area,
-    agency,
-    isVerified,
-    description,
-    type,
-    purpose,
-    furnishingStatus,
-    amenities,
-    photos,
-  },
-}) => (
-  <Box
-    maxWidth="1000px"
-    margin="auto"
-    p="4"
-    paddingTop={"6rem"}
-    className="bg-gray-100">
-    {photos && <ImageScrollbar data={photos} />}
+const PropertyDetails = ({ property: { price, rentFrequency, room, name, bathroom, area, agency, isVerified, description, purpose, furnishingStatus, amenities, images } }) => (
+  <Box maxWidth="1000px" margin="auto" p="4" paddingTop={"6rem"} className="bg-gray-100">
+
+    {images && <ImageScrollbar data={images} />}
     <Box w="full" p="6">
       <Flex paddingTop="2" alignItems="center">
         <Box paddingRight="3" color="green.400">
@@ -42,14 +21,9 @@ const PropertyDetails = ({
         <Spacer />
         <Avatar size="sm" src={agency?.logo?.url}></Avatar>
       </Flex>
-      <Flex
-        alignItems="center"
-        p="1"
-        justifyContent="space-between"
-        w="250px"
-        color="blue.400">
-        {rooms}
-        <FaBed /> | {baths} <FaBath /> | {millify(area)} sqft <BsGridFill />
+      <Flex alignItems="center" p="1" justifyContent="space-between" w="250px" color="blue.400">
+        {room}
+        <FaBed /> | {bathroom} <FaBath /> | {millify(area)} sqft <BsGridFill />
       </Flex>
     </Box>
     <Box marginTop="2">
@@ -60,38 +34,20 @@ const PropertyDetails = ({
         {description}
       </Text>
     </Box>
-    <Flex
-      flexWrap="wrap"
-      textTransform="uppercase"
-      justifyContent="space-between">
-      <Flex
-        justifyContent="space-between"
-        w="400px"
-        borderBottom="1px"
-        borderColor="gray.100"
-        p="3">
-        <Text>Type</Text>
-        <Text fontWeight="bold">{type}</Text>
+    <Flex flexWrap="wrap" textTransform="uppercase" justifyContent="space-between">
+      <Flex justifyContent="space-between" borderBottom="1px" gap="3" borderColor="gray.100" p="3">
+        <Text>Type</Text>:
+        <Text fontWeight="bold">{proer}</Text>
       </Flex>
-      <Flex
-        justifyContent="space-between"
-        w="400px"
-        borderBottom="1px"
-        borderColor="gray.100"
-        p="3">
-        <Text>Purpose</Text>
+      <Flex justifyContent="space-between" borderBottom="1px"  gap="3" borderColor="gray.100" p="3">
+        <Text>Purpose</Text>:
         <Text fontWeight="bold">{purpose}</Text>
       </Flex>
       {furnishingStatus && (
-        <Flex
-          justifyContent="space-between"
-          w="400px"
-          borderBottom="1px"
-          borderColor="gray.100"
-          p="3">
+        <Flex justifyContent="space-between" borderBottom="1px"  gap="3" borderColor="gray.100" p="3">
           <Text className="text-sm" fontSize={"medium"}>
             Furnishing Status
-          </Text>
+          </Text>:
           <Text className="text-sm" fontWeight="semibold">
             {furnishingStatus}
           </Text>
@@ -107,14 +63,7 @@ const PropertyDetails = ({
       <Flex flexWrap="wrap">
         {amenities?.map((item) =>
           item?.amenities?.map((amenity) => (
-            <Text
-              key={amenity?.text}
-              color="blue.600"
-              fontSize="l"
-              p="2"
-              bg="gray.200"
-              m="1"
-              borderRadius="5">
+            <Text key={amenity?.text} color="blue.600" fontSize="l" p="2" bg="gray.200" m="1" borderRadius="5">
               {amenity?.text}
             </Text>
           ))

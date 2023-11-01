@@ -24,8 +24,8 @@ const TabBtns = () => {
             className={`cursor-pointer text-white  w-1/2 ${
               activeButton == id && "bg-white text-green-700"
             } ${
-              activeButton !== id && "hover:bg-gray-200  hover:text-green-700"
-            } font-semibold text-lg px-[1rem] py-[0.5rem] rounded-lg md:py-[1rem] text-[1.25rem] `}
+              activeButton !== id && "hover:bg-gray-100  hover:text-green-700"
+            } font-semibold text-lg px-[0.5rem] py-[0.5rem] rounded-lg md:py-[1rem] text-[1.25rem] `}
           >
             {title}
           </li>

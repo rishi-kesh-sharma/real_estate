@@ -11,8 +11,9 @@ export const getPropertiesFun = async (data) => {
 };
 
 export const getPropertyDetailFun = async (id) => {
+  console.log(id)
   const response = await axios.get(
-    `${baseUrl}/properties/detail?id=${id}&populate=createdBy amenities category`,
+    `${baseUrl}/properties/detail?id=${id}&populate=category subCategory createdBy amenities`,
     {
       // headers: {
       //   Authorization: `Bearer ${token}`,

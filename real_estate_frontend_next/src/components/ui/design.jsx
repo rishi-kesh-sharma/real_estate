@@ -1,0 +1,1 @@
+export const ContainerSection=({children})=>(<div className="w-[85%] m-auto">{children}</div>)

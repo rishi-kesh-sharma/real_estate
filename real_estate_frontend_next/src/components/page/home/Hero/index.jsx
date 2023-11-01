@@ -10,6 +10,7 @@ import Section from "@/components/utils/Section";
 import Container from "@/components/utils/Container";
 import HeroText from "./HeroText";
 import NepalMap from "@/components/utils/NepalMap";
+import { ContainerSection } from "@/components/ui/design";
 
 const Hero = () => {
   const [show, setShow] = useState(false);
@@ -26,16 +27,16 @@ const Hero = () => {
     handleResize();
   }, []);
   return (
-    <Section className={`${styled.hero} h-[90vh]  bg-gray-200`}>
+    <Section className={`${styled.hero} h-[60vh]  bg-gray-200`}>
       <div className="flex h-full flex-col justify-center  mt-[1rem] bg-[url('/assets/images/banner.png')] bg-center">
-        <Container className="flex flex-col">
+        <ContainerSection className="flex flex-col">
           <HeroText />
-          <div className="flex flex-col gap-[0.6rem] md:mt-[2rem]">
+          <div className="flex flex-col w-[50%] gap-[0.6rem] md:mt-[2rem]">
             <TabBtns />
             <SearchBox />
             {/* <NepalMap /> */}
           </div>
-        </Container>
+        </ContainerSection>
       </div>
     </Section>
   );

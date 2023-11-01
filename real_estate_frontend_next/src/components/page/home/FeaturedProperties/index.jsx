@@ -10,6 +10,7 @@ import Container from "@/components/utils/Container";
 import Slider from "./Slider";
 import { useDispatch, useSelector } from "react-redux";
 import { getFeaturedProperties } from "@/store/features/propertySlice";
+import { ContainerSection } from "@/components/ui/design";
 
 const FeaturedProperties = () => {
   const dispatch = useDispatch();
@@ -22,17 +23,19 @@ const FeaturedProperties = () => {
     (state) => state.property.featuredProperties
   );
 
+  console.log(featuredProperties, "this is fetured properties")
+
   return (
     <Section
       className={`${styled.recent} ${styled.padding} mt-[3rem] bg-gray-50 py-[2rem] `}
     >
-      <Container>
+      <ContainerSection>
         <Heading
           title="Featured Properties"
           subtitle="look our featured properties"
         />
         <Slider properties={featuredProperties} />
-      </Container>
+      </ContainerSection>
     </Section>
   );
 };

@@ -1,6 +1,5 @@
 import Head from "next/head";
 import styles from "@/styles/properties.module.css";
-import { baseUrl, fetchApi } from "../../utils/fetchApi";
 import PropertyDetailsComponent from "../../components/page/PropertyDetails";
 import NormalLayout from "@/components/layouts/NormalLayout";
 
@@ -8,11 +7,26 @@ import NormalLayout from "@/components/layouts/NormalLayout";
 import { ChakraProvider } from "@chakra-ui/react";
 import { list } from "@/data/Data";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { getPropertyDetail } from "@/store/features/propertySlice";
+import { useEffect } from "react";
 
-const PropertyDetails = (property) => {
+const PropertyDetails = () => {
   const router = useRouter();
   const { id } = router.query;
-  property = list.find((item) => id == item.id);
+  console.log(id);
+  const {detail}= useSelector((state)=> state.property)
+  const dispatch = useDispatch();
+
+  ///fetching the singke property
+  useEffect(() => {
+    dispatch(getPropertyDetail(id))
+    
+  }, [dispatch, id]);
+  
+  console.log(detail)
+
+
   return (
     <>
       <Head>
@@ -23,9 +37,7 @@ const PropertyDetails = (property) => {
       </Head>
       <ChakraProvider>
         <main className={styles.main}>
-          <NormalLayout>
-            {property && <PropertyDetailsComponent property={property} />}
-          </NormalLayout>
+          <NormalLayout>{detail && <PropertyDetailsComponent property={detail} />}</NormalLayout>
         </main>
       </ChakraProvider>
     </>

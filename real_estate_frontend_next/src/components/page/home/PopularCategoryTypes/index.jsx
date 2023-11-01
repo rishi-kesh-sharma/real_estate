@@ -9,6 +9,7 @@ import {
   getCategories,
   getCategoryCount,
 } from "@/store/features/categorySlice";
+import { ContainerSection } from "@/components/ui/design";
 
 const CategoryTypes = () => {
   const dispatch = useDispatch();
@@ -35,13 +36,13 @@ const CategoryTypes = () => {
     <Section
       className={`${styled.featured} featured my-[2rem] bg-gray-100 py-[2rem] `}
     >
-      <Container className="container">
+      <ContainerSection className="container">
         <Heading
           title="Popular Categories"
           subtitle="Find All Type of Property."
         />
         <Slider categories={categoriesCount} />
-      </Container>
+      </ContainerSection>
     </Section>
   );
 };

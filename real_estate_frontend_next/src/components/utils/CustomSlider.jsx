@@ -7,7 +7,7 @@ import Container from "./Container";
 export default function CustomSlider({ children, settings }) {
   return (
     <div>
-      <Slider className="py-[1rem]  items-center justify-center " {...settings}>
+      <Slider className="" {...settings}>
         {children}
       </Slider>
     </div>

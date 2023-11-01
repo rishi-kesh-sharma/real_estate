@@ -15,7 +15,7 @@ const Recent = () => {
   const today = moment();
 
   // Calculate the date 5 days ago
-  const fiveDaysAgo = today.clone().subtract(3, "days");
+  const fiveDaysAgo = today.clone().subtract(20, "days");
 
   // Format the dates in the required format (YYYY-MM-DD)
   const todayFormatted = today.format("YYYY-MM-DD");
@@ -36,6 +36,10 @@ const Recent = () => {
   const recentProperties = useSelector(
     (state) => state.property.recentProperties
   );
+
+  console.log(recentProperties, "this is recent properties")
+
+  
 
   const list = recentProperties?.map((item) => ({
     id: item?._id,
@@ -62,7 +66,7 @@ const Recent = () => {
           subtitle="see our recently listed properties"
         />
         <div className="grid  lg:grid-cols-3 mt-5 gap-5 xl:grid-cols-4 xs:grid-cols-2">
-          {list?.map((recent, index) => {
+          {list?.slice(0,4).map((recent, index) => {
             return <RecentCard recent={recent} key={index} />;
           })}
         </div>

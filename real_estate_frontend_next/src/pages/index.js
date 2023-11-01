@@ -5,8 +5,10 @@ import { NextSeo } from "next-seo";
 const inter = Inter({ subsets: ["latin"] });
 import { useEffect } from "react";
 import { getProfile } from "../apiCalls/profile.js";
+
 import { parseCookies } from "../utils/cookies.js";
 import { createContext } from "react";
+import "react-image-gallery/styles/css/image-gallery.css";
 
 // profile context
 // HOME COMPONENT

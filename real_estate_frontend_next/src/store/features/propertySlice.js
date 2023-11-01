@@ -35,7 +35,7 @@ export const getFeaturedProperties = createAsyncThunk(
     try {
       const res = await getPropertiesFun({
         populate: "category amenities",
-        isFeatured: false,
+        isFeatured: true,
         isSold: false,
       });
       return res.data.data;
@@ -69,8 +69,9 @@ export const getPropertyDetail = createAsyncThunk(
   "getPropertyDetail",
   async (id, thunkApi) => {
     try {
+      console.log(id)
       const res = await getPropertyDetailFun(id);
-      return res.data.data;
+      return res.data;
     } catch (err) {
       let error = err;
       if (!error.response) {
@@ -85,7 +86,9 @@ export const getPropertyDetail = createAsyncThunk(
 export const propertySlice = createSlice({
   name: "property",
   initialState,
-  reducers: {},
+  reducers: {
+
+  },
   extraReducers: (builder) => {
     builder.addCase(getFeaturedProperties.pending, (state, action) => {
       state.loading = true;
@@ -159,5 +162,6 @@ export const propertySlice = createSlice({
     });
   },
 });
+export const detail= (state)=> state.property.detail;
 
 export default propertySlice.reducer;
