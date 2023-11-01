@@ -28,7 +28,7 @@ const countHandler = async (req, res, next) => {
 
 router.post("/create", handleValidation(validate), saveHandler);
 router.post("/search", searchHandler);
-router.post("/count", authenticateRequest, authorizeRequest, countHandler);
-router.delete("/delete", handleValidation(validate), deleteHandler);
+router.post("/count", countHandler);
+router.delete("/delete", deleteHandler);
 
 module.exports = router;
