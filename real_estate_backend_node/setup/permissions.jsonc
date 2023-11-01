@@ -314,6 +314,203 @@
     "isDisabled": false
   },
 
+  // Superadmin favorites api permissions
+
+  // /api/favorites/detail for superadmin
+  {
+    "resourceName": "/api/favorites/detail",
+    "resourceAlias": "Favorites detail API",
+    "roleName": "superadmin",
+    "roleAlias": "Superadmin",
+    "isAllowed": true,
+    "isDisabled": false
+  },
+  // /api/favorites/create for superadmin
+  {
+    "resourceName": "/api/favorites/create",
+    "resourceAlias": "Favorites create API",
+    "roleName": "superadmin",
+    "roleAlias": "Superadmin",
+    "isAllowed": true,
+    "isDisabled": false
+  },
+  // /api/favorites/update for superadmin
+  {
+    "resourceName": "/api/favorites/update",
+    "resourceAlias": "Favorites update API",
+    "roleName": "superadmin",
+    "roleAlias": "Superadmin",
+    "isAllowed": true,
+    "isDisabled": false
+  },
+  // /api/favorites/search for superadmin
+  {
+    "resourceName": "/api/favorites/search",
+    "resourceAlias": "Favorites search API",
+    "roleName": "superadmin",
+    "roleAlias": "Superadmin",
+    "isAllowed": true,
+    "isDisabled": false
+  },
+  // /api/favorites/count for superadmin
+  {
+    "resourceName": "/api/favorites/count",
+    "resourceAlias": "Favorites count API",
+    "roleName": "superadmin",
+    "roleAlias": "Superadmin",
+    "isAllowed": true,
+    "isDisabled": false
+  },
+  // /api/favorites/delete for superadmin
+  {
+    "resourceName": "/api/favorites/delete",
+    "resourceAlias": "Favorites delete API",
+    "roleName": "superadmin",
+    "roleAlias": "Superadmin",
+    "isAllowed": true,
+    "isDisabled": false
+  },
+  // /api/favorites/check for superadmin
+  {
+    "resourceName": "/api/favorites/check",
+    "resourceAlias": "Favorites check API",
+    "roleName": "superadmin",
+    "roleAlias": "Superadmin",
+    "isAllowed": true,
+    "isDisabled": false
+  },
+
+  // admin favorites api permissions
+
+  // /api/favorites/detail for admin
+  {
+    "resourceName": "/api/favorites/detail",
+    "resourceAlias": "Favorites detail API",
+    "roleName": "admin",
+    "roleAlias": "Admin",
+    "isAllowed": true,
+    "isDisabled": false
+  },
+  // /api/favorites/create for admin
+  {
+    "resourceName": "/api/favorites/create",
+    "resourceAlias": "Favorites create API",
+    "roleName": "admin",
+    "roleAlias": "Admin",
+    "isAllowed": true,
+    "isDisabled": false
+  },
+  // /api/favorites/update for admin
+  {
+    "resourceName": "/api/favorites/update",
+    "resourceAlias": "Favorites update API",
+    "roleName": "admin",
+    "roleAlias": "Admin",
+    "isAllowed": true,
+    "isDisabled": false
+  },
+  // /api/favorites/search for admin
+  {
+    "resourceName": "/api/favorites/search",
+    "resourceAlias": "Favorites search API",
+    "roleName": "admin",
+    "roleAlias": "Admin",
+    "isAllowed": true,
+    "isDisabled": false
+  },
+  // /api/favorites/count for admin
+  {
+    "resourceName": "/api/favorites/count",
+    "resourceAlias": "Favorites count API",
+    "roleName": "admin",
+    "roleAlias": "Admin",
+    "isAllowed": true,
+    "isDisabled": false
+  },
+  // /api/favorites/delete for admin
+  {
+    "resourceName": "/api/favorites/delete",
+    "resourceAlias": "Favorites delete API",
+    "roleName": "admin",
+    "roleAlias": "Admin",
+    "isAllowed": true,
+    "isDisabled": false
+  },
+  // /api/favorites/check for admin
+  {
+    "resourceName": "/api/favorites/check",
+    "resourceAlias": "Favorites check API",
+    "roleName": "admin",
+    "roleAlias": "Admin",
+    "isAllowed": true,
+    "isDisabled": false
+  },
+
+  // user favorites api permissions
+
+  // /api/favorites/detail for user
+  {
+    "resourceName": "/api/favorites/detail",
+    "resourceAlias": "Favorites detail API",
+    "roleName": "user",
+    "roleAlias": "User",
+    "isAllowed": true,
+    "isDisabled": false
+  },
+  // /api/favorites/create for user
+  {
+    "resourceName": "/api/favorites/create",
+    "resourceAlias": "Favorites create API",
+    "roleName": "user",
+    "roleAlias": "User",
+    "isAllowed": true,
+    "isDisabled": false
+  },
+  // /api/favorites/update for user
+  {
+    "resourceName": "/api/favorites/update",
+    "resourceAlias": "Favorites update API",
+    "roleName": "user",
+    "roleAlias": "User",
+    "isAllowed": true,
+    "isDisabled": false
+  },
+  // /api/favorites/search for user
+  {
+    "resourceName": "/api/favorites/search",
+    "resourceAlias": "Favorites search API",
+    "roleName": "user",
+    "roleAlias": "User",
+    "isAllowed": true,
+    "isDisabled": false
+  },
+  // /api/favorites/count for user
+  {
+    "resourceName": "/api/favorites/count",
+    "resourceAlias": "Favorites count API",
+    "roleName": "user",
+    "roleAlias": "User",
+    "isAllowed": true,
+    "isDisabled": false
+  },
+  // /api/favorites/delete for user
+  {
+    "resourceName": "/api/favorites/delete",
+    "resourceAlias": "Favorites delete API",
+    "roleName": "user",
+    "roleAlias": "User",
+    "isAllowed": true,
+    "isDisabled": false
+  },
+  // /api/favorites/check for user
+  {
+    "resourceName": "/api/favorites/check",
+    "resourceAlias": "Favorites check API",
+    "roleName": "user",
+    "roleAlias": "User",
+    "isAllowed": true,
+    "isDisabled": false
+  },
   // Superadmin sub categories api permissions
 
   // /api/subCategories/detail for superadmin

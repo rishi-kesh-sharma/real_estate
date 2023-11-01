@@ -20,9 +20,7 @@ const Recent = () => {
   // Format the dates in the required format (YYYY-MM-DD)
   const todayFormatted = today.format("YYYY-MM-DD");
   const fiveDaysAgoFormatted = fiveDaysAgo.format("YYYY-MM-DD");
-
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(
       getRecentProperties({

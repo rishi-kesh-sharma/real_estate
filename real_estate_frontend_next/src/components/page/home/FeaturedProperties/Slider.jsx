@@ -5,6 +5,7 @@ import FeaturedPropertyCard from "./FeaturedPropertyCard";
 import { imageUrl } from "@/apiCalls/constants";
 
 const Slider = ({ properties }) => {
+  console.log(properties);
   const list = properties?.map((item) => ({
     id: item?._id,
     name: item?.name,

@@ -1,15 +1,8 @@
 const express = require("express");
 const { getQuery, modelName } = require("./service");
-const {
-  getByIdHandler,
-  saveHandler,
-  updateHandler,
-  searchHandler: baseSearchHandler,
-  countHandler: baseCountHandler,
-  deleteHandler,
-} = require("../../core/controller");
+const { getByIdHandler, saveHandler, updateHandler, searchHandler: baseSearchHandler, countHandler: baseCountHandler, deleteHandler } = require("../../core/controller");
 const { validate } = require("./request");
-const { handleValidation, multiUploader } = require("../../common/middlewares");
+const { handleValidation, multiUploader, authenticateRequest, authorizeRequest } = require("../../common/middlewares");
 const { searchOne } = require("../../core/repository");
 
 const router = express.Router();
@@ -34,19 +27,18 @@ const checkHandler = async (req, res) => {
   if (req.body) {
     const user = await searchOne(req.body, modelName);
     if (user) {
-      return res
-        .status(200)
-        .send({ status: "success", message: "Category found" });
+      return res.status(200).send({ status: "success", message: "Category found" });
     }
   }
-  return res
-    .status(200)
-    .send({ status: "error", message: "Category not found" });
+  return res.status(200).send({ status: "error", message: "Category not found" });
 };
 router.get("/detail", getByIdHandler);
 router.post(
   "/create",
   multiUploader(),
+  authenticateRequest,
+  authorizeRequest,
+
   handleValidation(validate),
   saveHandler
 );

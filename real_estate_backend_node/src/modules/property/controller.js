@@ -43,6 +43,7 @@ router.put(
   "/update",
   authenticateRequest,
   authorizeRequest,
+  multiUploader(),
   handleValidation(validate),
   updateHandler
 );

@@ -34,8 +34,8 @@ export const getFeaturedProperties = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const res = await getPropertiesFun({
-        populate: "category amenities",
-        isFeatured: true,
+        populate: "category amenities subCategory",
+        isFeatured: false,
         isSold: false,
       });
       return res.data.data;
@@ -71,6 +71,7 @@ export const getPropertyDetail = createAsyncThunk(
     try {
       console.log(id)
       const res = await getPropertyDetailFun(id);
+      console.log(res);
       return res.data;
     } catch (err) {
       let error = err;

@@ -17,6 +17,7 @@ const schema = Joi.object().keys({
 
 const validate = (data) => {
   const tempData = { ...data };
+  console.log(tempData, "this is tempdata");
 
   if (typeof tempData.meta_tag === "string") {
     try {

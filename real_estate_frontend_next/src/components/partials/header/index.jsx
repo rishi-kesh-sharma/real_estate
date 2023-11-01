@@ -10,7 +10,6 @@ import LeftNavLinks from "./LeftNavLinks";
 import ToggleNavigation from "./ToggleNavigation";
 import RightNavLinks from "./RightNavLinks";
 import SectionWrapper from "@/components/utils/SectionWrapper";
-import BreadCrumbContainer from "@/components/utils/BreadCrumbContainer";
 import Link from "next/link";
 import { profileContext } from "@/pages/_app";
 import ProfileAvatar from "@/components/utils/ProfileAvatar";
@@ -28,7 +27,7 @@ const Navbar = () => {
     if (window.innerWidth >= 768 && window.innerWidth < 1024) return setCurrentDevice("md");
   };
 
-  // HANDLE NAVLINKS CLICK
+  // HANDLE NAV LINKS CLICK
   const handleNavLinksClick = (e) => {
     setShow(false);
   };
@@ -38,7 +37,7 @@ const Navbar = () => {
     setShow(!show);
   };
 
-  // USEEFFECT
+  // USE EFFECT
   useEffect(() => {
     window.addEventListener("click", (e) => {
       console.log(e.target);
@@ -51,7 +50,7 @@ const Navbar = () => {
   return (
     <SectionWrapper className="h-[50px]">
       <Section className=" fixed bg-white" style={{ zIndex: 1000 }}>
-        <ContainerSection>
+        <Container>
           <div className=" flex justify-between  items-center">
             <Link href={nav.logo.path}>
               <Logo LogoImage={nav.logo.image} alt="Logo" className="h-[80px]" />
@@ -67,7 +66,7 @@ const Navbar = () => {
               {show && (currentDevice == "sm" || currentDevice == "md" || currentDevice == "lg") && <ToggleNavigation links={nav?.links?.sideBarLinks} handleNavLinksClick={handleNavLinksClick} show={show} setShow={setShow} isAuthenticated={profileData?.isAuthenticated} profile={profileData?.profile} />}
             </div>
           </div>
-        </ContainerSection>
+        </Container>
       </Section>
     </SectionWrapper>
   );

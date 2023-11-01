@@ -27,16 +27,16 @@ const Hero = () => {
     handleResize();
   }, []);
   return (
-    <Section className={`${styled.hero} h-[60vh]  bg-gray-200`}>
+    <Section className={`${styled.hero} h-[80vh]  bg-gray-200`}>
       <div className="flex h-full flex-col justify-center  mt-[1rem] bg-[url('/assets/images/banner.png')] bg-center">
-        <ContainerSection className="flex flex-col">
+        <Container className="flex flex-col">
           <HeroText />
           <div className="flex flex-col w-[50%] gap-[0.6rem] md:mt-[2rem]">
             <TabBtns />
             <SearchBox />
             {/* <NepalMap /> */}
           </div>
-        </ContainerSection>
+        </Container>
       </div>
     </Section>
   );

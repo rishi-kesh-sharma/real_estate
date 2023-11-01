@@ -8,25 +8,19 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { list } from "@/data/Data";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { getPropertyDetail } from "@/store/features/propertySlice";
-import { useEffect } from "react";
 
 const PropertyDetails = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const { id } = router.query;
-  console.log(id);
-  const {detail}= useSelector((state)=> state.property)
-  const dispatch = useDispatch();
-
-  ///fetching the singke property
   useEffect(() => {
-    dispatch(getPropertyDetail(id))
-    
-  }, [dispatch, id]);
-  
-  console.log(detail)
-
-
+    console.log(id);
+    dispatch(getPropertyDetail(id));
+  }, []);
+  const property = useSelector((state) => state.property.detail);
+  console.log(property);
   return (
     <>
       <Head>
@@ -37,20 +31,11 @@ const PropertyDetails = () => {
       </Head>
       <ChakraProvider>
         <main className={styles.main}>
-          <NormalLayout>{detail && <PropertyDetailsComponent property={detail} />}</NormalLayout>
+          <NormalLayout>{property && <PropertyDetailsComponent property={property} />}</NormalLayout>
         </main>
       </ChakraProvider>
     </>
   );
 };
 
-// export async function getServerSideProps({ params: { id } }) {
-//   const data = await fetchApi(`${baseUrl}/properties/detail?externalID=${id}`);
-//   console.log(data);
-//   return {
-//     props: {
-//       propertyDetails: data,
-//     },
-//   };
-// }
 export default PropertyDetails;

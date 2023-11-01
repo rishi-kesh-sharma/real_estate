@@ -1,7 +1,6 @@
 const Joi = require("joi");
 
 const schema = Joi.object().keys({
-  _id: Joi.string().optional(),
   property: Joi.string().required(),
   addedBy: Joi.string().required(),
 });

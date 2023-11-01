@@ -372,6 +372,43 @@
     "type": "api"
   },
 
+  // favorites API
+
+  // default
+  {
+    "name": "/api/favorites",
+    "alias": "Favorites API",
+    "type": "api"
+  },
+
+  // create
+  {
+    "name": "/api/favorites/create",
+    "alias": "Favorites create API",
+    "type": "api"
+  },
+
+  // search
+  {
+    "name": "/api/favorites/search",
+    "alias": "Favorites search API",
+    "type": "api"
+  },
+
+  // count
+  {
+    "name": "/api/favorites/count",
+    "alias": "Favorites count API",
+    "type": "api"
+  },
+
+  // delete
+  {
+    "name": "/api/favorites/delete",
+    "alias": "Favorites delete API",
+    "type": "api"
+  },
+
   // Sub Categories API
 
   // default
@@ -716,6 +753,23 @@
   {
     "name": "/categories/new",
     "alias": "Categories new",
+    "type": "client"
+  },
+
+  //Favorites
+  {
+    "name": "/favorites",
+    "alias": "Favorites menu",
+    "type": "client"
+  },
+  {
+    "name": "/favorites/list",
+    "alias": "Favorites list",
+    "type": "client"
+  },
+  {
+    "name": "/favorites/new",
+    "alias": "Favorites new",
     "type": "client"
   },
 

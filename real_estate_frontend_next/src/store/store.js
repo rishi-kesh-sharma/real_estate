@@ -3,6 +3,7 @@ import { authSlice } from "./features/authSlice";
 import categorySlice from "./features/categorySlice";
 import propertySlice from "./features/propertySlice";
 import blogSlice from "./features/blogSlice";
+import favoriteSlice from "./features/favoriteSlice";
 
 // export const makeStore = () =>
 //   configureStore({
@@ -17,6 +18,7 @@ const store = configureStore({
     category: categorySlice,
     property: propertySlice,
     blog: blogSlice,
+    favorite: favoriteSlice,
   },
 });
 

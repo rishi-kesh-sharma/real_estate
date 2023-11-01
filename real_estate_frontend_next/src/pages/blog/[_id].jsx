@@ -13,7 +13,6 @@ const inter = Inter({ subsets: ["latin"] });
 export default function BlogDetail() {
   const router = useRouter();
   const { _id } = router.query;
-  console.log(_id);
   const blog = blogs.find((item) => _id == item.slug.current);
   console.log(blog);
   return (

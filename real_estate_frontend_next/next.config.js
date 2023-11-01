@@ -2,7 +2,7 @@
 module.exports = {
   reactStrictMode: false,
   images: {
-    domains: ["bayut-production.s3.eu-central-1.amazonaws.com", "localhost"],
+    domains: ["localhost"],
   },
   publicRuntimeConfig: {
     // Will be available on both server and client

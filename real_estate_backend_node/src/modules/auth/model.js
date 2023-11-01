@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema(
     roleAlias: { type: String, required: true },
     passwordHash: { type: String, required: true },
     passwordResetToken: { type: String, required: false },
-    isActive: { type: Boolean, required: true, default: false },
+    isActive: { type: Boolean, required: true, default: true },
     accountActivationToken: { type: String, required: false },
     address: { type: String, required: false },
     createdBy: {

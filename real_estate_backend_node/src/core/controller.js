@@ -90,6 +90,7 @@ const updateHandler = async (req, res, next) => {
   try {
     const ModelName = req.modelName;
     const { body } = req;
+    console.log(req.socket.remoteAddress, "this is ip address");
 
     await update(body, ModelName);
     return res

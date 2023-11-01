@@ -10,7 +10,6 @@ export const getCategoryFun = async (data) => {
   return response;
 };
 
-
 export const getCatCountFun = async (data) => {
   const response = await axios.post(`${baseUrl}/categories/count`, data, {
     // headers: {
