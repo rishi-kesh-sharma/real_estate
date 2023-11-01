@@ -90,11 +90,11 @@ const Profile = () => {
                 </div>
               </div>
 
-              <button
+              {/* <button
                 onClick={toggleModal}
                 className="text-sm text-gray-50 font-medium rounded bg-green-600 max-w-[150px] px-[1rem] py-[0.5rem]">
                 Change Password
-              </button>
+              </button> */}
             </div>
           </Container>
         </>

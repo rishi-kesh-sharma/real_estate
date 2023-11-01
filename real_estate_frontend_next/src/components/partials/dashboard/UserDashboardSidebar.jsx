@@ -72,9 +72,7 @@ const UserDashboardSidebar = (
             
           </Link> */}
         </div>
-        {/* <!-- my orders tab --> */}
 
-        {/* <!-- account settings tab --> */}
         <div className="flex items-center gap-5 px-4 py-4">
           <span className="text-primary-green">
             <BsFillPersonFill />
@@ -125,9 +123,9 @@ const UserDashboardSidebar = (
             All Notifications
           </Link> */}
           <Link
-            href="/dashboard/favourites"
+            href="/dashboard/properties/favorites"
             className={`${
-              activeTab === "favourites"
+              activeTab === "favorites"
                 ? "bg-green-50 text-primary-green font-medium"
                 : "hover:bg-green-50 hover:text-primary-green"
             } p-3 pl-14`}>
