@@ -5,6 +5,7 @@ import {
   addFavoriteFun,
   getFavCountFun,
   getFavoritesFun,
+  removeFavoriteFun,
 } from "@/apiCalls/favorite";
 
 // Initial state
@@ -56,6 +57,28 @@ export const addFavorite = createAsyncThunk(
         addedBy,
         populate: "addedBy property",
       });
+      const countRes = await getFavCountFun({
+        addedBy,
+      });
+      return { favorites: res.data.data, count: countRes.data.total };
+    } catch (err) {
+      let error = err;
+      if (!error.response) {
+        throw err;
+      }
+      return thunkApi.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+export const removeFavorite = createAsyncThunk(
+  "removeFavorite",
+  async (id, thunkApi) => {
+    try {
+      await removeFavoriteFun(id);
+      const res = await getFavoritesFun({
+        addedBy,
+        populate: "addedBy property",
+      });
       return res.data.data;
     } catch (err) {
       let error = err;
@@ -91,14 +114,34 @@ export const favoriteSlice = createSlice({
     });
     builder.addCase(addFavorite.pending, (state, action) => {
       state.loading = true;
+
       state.error = null;
     });
     builder.addCase(addFavorite.fulfilled, (state, action) => {
       state.loading = false;
-      state.favorites = action.payload;
+      console.log(action.payload);
+      state.favorites = action.payload.favorites;
+      state.favoriteCount = state.payload.count;
       state.error = null;
     });
     builder.addCase(addFavorite.rejected, (state, action) => {
+      state.loading = false;
+      Toast.fire({
+        icon: "error",
+        title: action.payload,
+      });
+    });
+    builder.addCase(removeFavorite.pending, (state, action) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(removeFavorite.fulfilled, (state, action) => {
+      state.loading = false;
+      state.favorites = action.payload;
+      state.favoriteCount = state.favorites.length;
+      state.error = null;
+    });
+    builder.addCase(removeFavorite.rejected, (state, action) => {
       state.loading = false;
       Toast.fire({
         icon: "error",

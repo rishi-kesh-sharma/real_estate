@@ -1,8 +1,6 @@
 import React from "react";
-import styled from "./index.module.css";
 import Card from "@/components/utils/Card";
 import CardImage from "@/components/utils/CardImage";
-import Image from "next/image";
 import CardContent from "@/components/utils/CardContent";
 import { Avatar1 } from "public/assets/images/Avatars";
 
@@ -15,7 +13,6 @@ const CategoryTypeCard = ({ feature }) => {
           height={100}
           width={100}
           src={`http://localhost:5000/${feature.image}` || Avatar1}
-          // src={`\public\images/ `}
           alt={feature?.name}
         />
       </CardImage>

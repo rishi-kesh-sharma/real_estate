@@ -18,6 +18,14 @@ export const addFavoriteFun = async (data) => {
   });
   return response;
 };
+export const removeFavoriteFun = async (id) => {
+  const response = await axios.delete(`${baseUrl}/favorites/delete?id=${id}`, {
+    headers: {
+      Authorization: `Bearer ${getTokenFromLocalStorage(localStorage)}`,
+    },
+  });
+  return response;
+};
 
 export const getFavCountFun = async (data) => {
   const response = await axios.post(`${baseUrl}/favorites/count`, data, {

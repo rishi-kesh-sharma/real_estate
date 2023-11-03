@@ -9,7 +9,11 @@ import Link from "next/link";
 import { city1 } from "public/assets/images/cities";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserFromLocalStorage } from "@/utils/LocalStorage";
-import { addFavorite, getFavorites } from "@/store/features/favoriteSlice";
+import {
+  addFavorite,
+  getFavorites,
+  removeFavorite,
+} from "@/store/features/favoriteSlice";
 
 const FeaturedPropertyCard = ({ featured }) => {
   const dispatch = useDispatch();
@@ -19,9 +23,12 @@ const FeaturedPropertyCard = ({ featured }) => {
   const isLiked = favorites?.find((item) => {
     return item.property._id == id;
   });
-  console.log(isLiked && "hello");
   const handleLikeClick = (e) => {
-    dispatch(addFavorite({ addedBy: user._id, property: id }));
+    if (!isLiked) {
+      dispatch(addFavorite({ addedBy: user._id, property: id }));
+    } else {
+      dispatch(removeFavorite(isLiked._id));
+    }
   };
 
   useEffect(() => {
